@@ -1,4 +1,4 @@
-package main.java.Chess;
+package Chess;
 
 public class Bishop {
     
