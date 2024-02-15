@@ -10,4 +10,9 @@ public class ChessTest {
         Assertions.assertTrue("This is a test" == test, "test not same");
         System.out.println("Starting test (working):");
     }
+    
+    @Test
+    public void testRightSetup() {
+        Assertions.assertTrue(true==true, "nice");
+    }
 }
