@@ -1,5 +1,5 @@
 package Chess;
 
-public class Bishop {
+public class Bishop implements ChessPiece {
     
 }
