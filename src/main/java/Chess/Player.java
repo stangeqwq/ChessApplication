@@ -18,46 +18,49 @@ public class Player {
         setupPieces(isWhite);
 
         this.opponent = new Player(opponentName, !isWhite, name);
-        setOpponent(opponentName);
+        setOpponent(opponent);
 
     }
     private void setOpponent(Player opponent) {
-        if (this.player == opponent) {
+        if (this == opponent) {
             throw new IllegalArgumentException();
         }
         this.opponent = opponent;
-        if (this.player != null) {
+        if (this != null && this.opponent.getOpponent() == null) {
             this.opponent.setOpponent(this);
         }
+    }
+    public Player getOpponent() {
+        return this.opponent;
     }
     private void setupPieces(boolean isWhite) {
         if (isWhite) {
             for (int i = 0; i < 8; i++) {
                 pieces.add(new Pawn(String.format("%c%c", validColumns[i], '2')));
             }
-            pieces.add(new Knight(String format("%c%c", 'b', '1' )));
-            pieces.add(new Knight(String format("%c%c", 'g', '1' )));
-            pieces.add(new Rook(String format("%c%c", 'a', '1' )));
-            pieces.add(new Rook(String format("%c%c", 'h', '1' )));
-            pieces.add(new Bishop(String format("%c%c", 'c', '1' )));
-            pieces.add(new Bishop(String format("%c%c", 'f', '1' )));
+            pieces.add(new Knight(String.format("%c%c", 'b', '1' )));
+            pieces.add(new Knight(String.format("%c%c", 'g', '1' )));
+            pieces.add(new Rook(String.format("%c%c", 'a', '1' )));
+            pieces.add(new Rook(String.format("%c%c", 'h', '1' )));
+            pieces.add(new Bishop(String.format("%c%c", 'c', '1' )));
+            pieces.add(new Bishop(String.format("%c%c", 'f', '1' )));
 
-            pieces.add(new King(String format("%c%c", 'd', '1' )));
-            pieces.add(new Queen(String format("%c%c", 'e', '1' )));
+            pieces.add(new King(String.format("%c%c", 'd', '1' )));
+            pieces.add(new Queen(String.format("%c%c", 'e', '1' )));
 
         } else {
             for (int i = 0; i < 8; i++) {
                 pieces.add(new Pawn(String.format("%c%c", validColumns[i], '7')));
             }
-            pieces.add(new Knight(String format("%c%c", 'b', '8' )));
-            pieces.add(new Knight(String format("%c%c", 'g', '8' )));
-            pieces.add(new Rook(String format("%c%c", 'a', '8' )));
-            pieces.add(new Rook(String format("%c%c", 'h', '8' )));
-            pieces.add(new Bishop(String format("%c%c", 'c', '8' )));
-            pieces.add(new Bishop(String format("%c%c", 'f', '8' )));
+            pieces.add(new Knight(String.format("%c%c", 'b', '8' )));
+            pieces.add(new Knight(String.format("%c%c", 'g', '8' )));
+            pieces.add(new Rook(String.format("%c%c", 'a', '8' )));
+            pieces.add(new Rook(String.format("%c%c", 'h', '8' )));
+            pieces.add(new Bishop(String.format("%c%c", 'c', '8' )));
+            pieces.add(new Bishop(String.format("%c%c", 'f', '8' )));
             
-            pieces.add(new King(String format("%c%c", 'd', '8' )));
-            pieces.add(new Queen(String format("%c%c", 'e', '8' )));
+            pieces.add(new King(String.format("%c%c", 'd', '8' )));
+            pieces.add(new Queen(String.format("%c%c", 'e', '8' )));
         }
     }
     public void setName(String name) {

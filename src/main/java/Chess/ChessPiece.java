@@ -1,7 +1,6 @@
 package Chess;
 
 public interface ChessPiece {
-    public void setPosition(String);
-    public void getPosition();
-    private boolean isValidPosition(String);
+    public void setPosition(String position);
+    public String getPosition();
 }

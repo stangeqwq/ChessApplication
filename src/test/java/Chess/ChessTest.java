@@ -1,12 +1,13 @@
 package Chess;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class ChessTest {
-    @BeforeEeach
+    @BeforeEach
     public void setup() {
-        ChessGame1 = new ChessGame("Alice", "Bob");
+        ChessGame ChessGame1 = new ChessGame("Alice", "Bob");
     }
     @Test
     public void testBasic() {

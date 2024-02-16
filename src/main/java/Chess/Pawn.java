@@ -16,8 +16,8 @@ public class Pawn implements ChessPiece {
         }
 
     }
-    public void getPosition() {
-
+    public String getPosition() {
+        return this.position;
     }
-    
+   
 }
