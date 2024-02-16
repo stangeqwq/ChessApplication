@@ -4,6 +4,9 @@ public class Knight implements ChessPiece{
     private String position = "a1";
     private Character initial = 'N';
 
+    private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+    private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
+    
     public Knight(String position) {
         this.position = position;
     }

@@ -9,9 +9,7 @@ public class Player {
 
     private boolean isWhite = true;
     private List<ChessPiece> pieces = new ArrayList<ChessPiece>();
-    private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
-    private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
-    
+
     public Player(String name, boolean isWhite) {
         this.name = name;
         this.isWhite = isWhite;
@@ -51,7 +49,7 @@ public class Player {
     private void setupPieces(boolean isWhite) {
         if (isWhite) {
             for (int i = 0; i < 8; i++) {
-                pieces.add(new Pawn(String.format("%c%c", validColumns[i], '2')));
+                pieces.add(new Pawn(String.format("%c%c", (char)('a' + i), '2')));
             }
             pieces.add(new Knight(String.format("%c%c", 'b', '1' )));
             pieces.add(new Knight(String.format("%c%c", 'g', '1' )));
@@ -65,7 +63,7 @@ public class Player {
 
         } else {
             for (int i = 0; i < 8; i++) {
-                pieces.add(new Pawn(String.format("%c%c", validColumns[i], '7')));
+                pieces.add(new Pawn(String.format("%c%c", (char)('a' + i), '7')));
             }
             pieces.add(new Knight(String.format("%c%c", 'b', '8' )));
             pieces.add(new Knight(String.format("%c%c", 'g', '8' )));
@@ -84,6 +82,13 @@ public class Player {
     public String getName() {
         return this.name;
     }
+    public String getPiecePositions() {
+        String piecePositions = "";
+        for (ChessPiece piece : pieces) {
+            piecePositions += piece.getInitial() + piece.getPosition() + " ";
+        }
+        return piecePositions;
+    }
     public static void main(String args[]) {
         System.out.println("Hello world!");
         ChessGame game1 = new ChessGame("Alice", "Bob");
@@ -91,5 +96,7 @@ public class Player {
         System.out.println(game1.getBlackPlayer().getOpponent().getName());
         game1.getWhitePlayer().setName("Charlie");
         System.out.println(game1.getBlackPlayer().getOpponent().getName());
+        System.out.println((char) ('a'+1));
+        System.out.println(game1.getWhitePlayer().getPiecePositions());
     }
 }
