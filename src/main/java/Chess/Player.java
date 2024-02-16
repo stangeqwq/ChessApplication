@@ -12,27 +12,35 @@ public class Player {
     private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
     
-    public Player(String name, boolean isWhite, String opponentName) {
+    public Player(String name, boolean isWhite) {
         this.name = name;
         this.isWhite = isWhite;
         setupPieces(isWhite);
-
-        this.opponent = new Player(opponentName, !isWhite, name);
-        setOpponent(opponent);
-
     }
+    public Player(String name, boolean isWhite, Player opponent) {
+        this.name = name;
+        this.isWhite = isWhite;
+        setupPieces(isWhite);
+        this.setOpponent(opponent);
+    }
+
+    public boolean getColorIsWhite() {
+        return this.isWhite;
+    }
+    
     private void setOpponent(Player opponent) {
-        if (this == opponent) {
-            throw new IllegalArgumentException();
+        if (this.opponent == opponent) {
+            return; // already same opponent return, automatic 1-1 connection
         }
         this.opponent = opponent;
-        if (this != null && this.opponent.getOpponent() == null) {
+        if (this.opponent != null) {
             this.opponent.setOpponent(this);
         }
     }
     public Player getOpponent() {
         return this.opponent;
     }
+
     private void setupPieces(boolean isWhite) {
         if (isWhite) {
             for (int i = 0; i < 8; i++) {
@@ -71,5 +79,10 @@ public class Player {
     }
     public static void main(String args[]) {
         System.out.println("Hello world!");
+        ChessGame game1 = new ChessGame("Alice", "Bob");
+        System.out.println("Hello world!");
+        System.out.println(game1.getWhitePlayer().getOpponent().getName());
+        System.out.println(game1.getBlackPlayer().getOpponent().getName());
+        
     }
 }

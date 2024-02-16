@@ -10,12 +10,13 @@ public class King implements ChessPiece{
     private boolean isValidPosition(String position){
         return true;
     }
+    
     public void setPosition(String position) {
         if (isValidPosition(position)) {
             this.position = position;
         }
-
     }
+
     public String getPosition() {
         return this.position;
     }
