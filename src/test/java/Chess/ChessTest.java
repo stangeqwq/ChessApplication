@@ -16,8 +16,7 @@ public class ChessTest {
     }
     
     @Test
-    public void testRightSetup() {
-        
+    public void testRightSetup() {     
         Assertions.assertTrue(true==true, "nice");
     }
 }
