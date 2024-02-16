@@ -1,5 +1,5 @@
 package Chess;
 
-public class King {
+public class King implements ChessPiece{
     
 }

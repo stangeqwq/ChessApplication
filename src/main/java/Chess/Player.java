@@ -16,12 +16,19 @@ public class Player {
         this.name = name;
         this.isWhite = isWhite;
         setupPieces(isWhite);
-        
+
+        this.opponent = new Player(opponentName, !isWhite, name);
+        setOpponent(opponentName);
 
     }
-    private void setOpponent(String name) {
-
-
+    private void setOpponent(Player opponent) {
+        if (this.player == opponent) {
+            throw new IllegalArgumentException();
+        }
+        this.opponent = opponent;
+        if (this.player != null) {
+            this.opponent.setOpponent(this);
+        }
     }
     private void setupPieces(boolean isWhite) {
         if (isWhite) {
