@@ -83,6 +83,7 @@ public class Player {
         System.out.println("Hello world!");
         System.out.println(game1.getWhitePlayer().getOpponent().getName());
         System.out.println(game1.getBlackPlayer().getOpponent().getName());
-        
+        game1.getWhitePlayer().setName("Charlie");
+        System.out.println(game1.getBlackPlayer().getOpponent().getName());
     }
 }

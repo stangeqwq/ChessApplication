@@ -25,4 +25,11 @@ public class ChessGame {
             return player2;
         }
     }
+    public String toString() {
+        return String.format("Players: %s (white), %s (black)", player1.getName(), player2.getName());
+    }
+    public static void main(String args[]) {
+        ChessGame game1 = new ChessGame("Alice", "Bob");
+        System.out.println(game1.toString());
+    }
 }
