@@ -1,0 +1,14 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+	<groupId>chess-v2024</groupId>
+	<artifactId>ChessApplication</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.0</version> <!-- Adjust version as needed -->
+            <scope>test</scope>
+        </dependency>        
+    </dependencies>
+</project>
