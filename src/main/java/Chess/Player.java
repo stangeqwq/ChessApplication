@@ -80,7 +80,6 @@ public class Player {
     public static void main(String args[]) {
         System.out.println("Hello world!");
         ChessGame game1 = new ChessGame("Alice", "Bob");
-        System.out.println("Hello world!");
         System.out.println(game1.getWhitePlayer().getOpponent().getName());
         System.out.println(game1.getBlackPlayer().getOpponent().getName());
         game1.getWhitePlayer().setName("Charlie");

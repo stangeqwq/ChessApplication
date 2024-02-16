@@ -7,6 +7,9 @@ public class ChessGame {
     private Player player1;
     private Player player2;
     private List<List<String>> chessBoard = new ArrayList<List<String>>();
+    private boolean finished = false;
+    private List<String> moves = new ArrayList<String>();
+    
     public ChessGame(String player1, String player2) {
         this.player1 = new Player(player1, true);
         this.player2 = new Player(player2, false, this.player1);
