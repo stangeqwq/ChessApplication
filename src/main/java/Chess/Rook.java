@@ -2,7 +2,8 @@ package Chess;
 
 public class Rook implements ChessPiece{
     private String position = "a1";
-
+    private Character initial = 'R';
+    
     public Rook(String position) {
         this.position = position;
     }
@@ -18,6 +19,10 @@ public class Rook implements ChessPiece{
     }
     public String getPosition() {
         return this.position;
+    }
+
+    public Character getInitial() {
+        return this.initial;
     }
     public static void main(String args[]) {
         System.out.println("Test");

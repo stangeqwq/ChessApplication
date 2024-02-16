@@ -2,6 +2,7 @@ package Chess;
 
 public class King implements ChessPiece{
     private String position = "a1";
+    private Character initial = 'K';
 
     public King(String position) {
         this.position = position;
@@ -16,7 +17,9 @@ public class King implements ChessPiece{
             this.position = position;
         }
     }
-
+    public Character getInitial() {
+        return this.initial;
+    }
     public String getPosition() {
         return this.position;
     }

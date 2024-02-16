@@ -24,6 +24,13 @@ public class Player {
         this.setOpponent(opponent);
     }
 
+    public void move(String move) {
+        // input will be of form "Ke4" (king to e4) or "Ne5" etc.
+        // check which chess piece to move in the players list of chess pieces
+        // have
+        // validation of the actual position happens in the chess pieces classes
+    }
+
     public boolean getColorIsWhite() {
         return this.isWhite;
     }
