@@ -37,6 +37,7 @@ public class Player {
                 }
             }
         }
+        pieceToMove.setPosition(move);
     }
 
     public boolean getColorIsWhite() {
@@ -104,6 +105,7 @@ public class Player {
         }
         return piecePositions;
     }
+   
     public static void main(String args[]) {
         System.out.println("Hello world!");
         ChessGame game1 = new ChessGame("Alice", "Bob");

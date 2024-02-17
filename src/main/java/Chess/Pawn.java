@@ -12,6 +12,7 @@ public class Pawn implements ChessPiece {
     }
     
     public boolean isValidPosition(String position){
+        
         return true;
     }
     public void setPosition(String position) {

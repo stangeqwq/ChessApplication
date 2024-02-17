@@ -40,12 +40,31 @@ public class ChessGame {
             return player2;
         }
     }
+    public String getMoves() {
+        String movelist = "";
+        int twoCount = 0;
+        for (String move : moves) {
+            if (twoCount == 0) {
+                movelist += String.format("%i. ", moves.size()/2);
+            }
+            if (twoCount < 2) {
+                movelist += move += " ";
+                twoCount += 1;
+            }
+            if (twoCount == 2) {
+                movelist += "\n";
+                twoCount = 0;
+            }
+        }
+        return movelist;
+    }
     public String toString() {
-        return String.format("Players: %s (white), %s (black)", player1.getName(), player2.getName());
+        return String.format("Players: %s (white), %s (black) %s", player1.getName(), player2.getName(), "\n" + this.getMoves());
     }
 
     public static void main(String args[]) {
         ChessGame game1 = new ChessGame("Alice", "Bob");
+        game1.move("e4");
         System.out.println(game1.toString());
     }
 }
