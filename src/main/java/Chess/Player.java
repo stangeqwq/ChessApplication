@@ -48,7 +48,7 @@ public class Player {
         
         // check which chess piece to move (or set position of) in the players list of chess pieces
         List<ChessPiece> pieceToMove = new ArrayList<ChessPiece>();
-        for (ChessPiece pieceToCheck : piecesToCheck) {
+        for (ChessPiece pieceToCheck : piecesToCheck) { // find pieces that could move to that position
             if (isPawn) {
                 if (move.length() == 4) {
                     if (pieceToCheck.isValidPosition(move.substring(1))) {
@@ -66,12 +66,12 @@ public class Player {
             }
         }
 
-        if (Character.isLowerCase(move.charAt(0))) {
+        if (isPawn) {
             if (pieceToMove.size() == 1) { // the valid piece is found
                 if (move.length() == 3) { // f.e. de4
-                    piecesToMove.get(0).setPosition(move.substring(0));
+                    pieceToMove.get(0).setPosition(move.substring(0));
                 } else if (move.length() == 4) { //f.e. dxe4
-                    piecesToMove.get(0).setPosition(move.substring(1));
+                    pieceToMove.get(0).setPosition(move.substring(1));
                 } else {
                     throw new IllegalArgumentException();
                 }
@@ -79,13 +79,13 @@ public class Player {
                 throw new IllegalArgumentException(); // the given move is not specific enough (for example Ne4 instead of Nde4)
             }
         } else {
-            if (piecesToCheck.size() == 1) { // the valid piece is found
+            if (pieceToMove.size() == 1) { // the valid piece is found
                 if (move.length() == 3) { // f.e. Ne4
-                    piecesToCheck.get(0).setPosition(move.substring(1)); // when setting position we don't look at the initial of the piece
+                    pieceToMove.get(0).setPosition(move.substring(1)); // when setting position we don't look at the initial of the piece
                 } else if (move.length() == 4) { //f.e. Nde4 or N1e4 or Nxe4
-                    piecesToCheck.get(0).setPosition(move.substring(2, 4));
+                    pieceToMove.get(0).setPosition(move.substring(2, 4));
                 } else if (move.length() == 5) { // f.e. Ndxe4
-                    piecesToCheck.get(0).setPosition(move.substring(2, 5));
+                    pieceToMove.get(0).setPosition(move.substring(2, 5));
                 }
             } else {
                 throw new IllegalArgumentException();
