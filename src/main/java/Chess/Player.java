@@ -35,71 +35,20 @@ public class Player {
     }
     public void move(String move) {
         // input will be of form "Ke4" (king to e4) or "Ne5" etc. Nxe4, or Ndxe4 (different column) or N3xe4 (different row)
-        List<ChessPiece> piecesToCheck;
-        boolean isPawn = false;
-        if (Character.isLowerCase(move.charAt(0))) {
-            isPawn = true;
-        }
-        if (isPawn) {
-            piecesToCheck = findPieceType(null);
-        } else {
-            piecesToCheck = findPieceType(move.charAt(0));
-        }
-        
-        // check which chess piece to move (or set position of) in the players list of chess pieces
-        // if several chess pieces could move in that position, and which piece is not specified, throw error
-        // validPosition will check (1) this is the right piece referred (f.e. N(d)e4), (2) the actual position can be moved to
-
-        List<ChessPiece> pieceToMove = new ArrayList<ChessPiece>();
-        for (ChessPiece pieceToCheck : piecesToCheck) { // find pieces that could move to that position
-            if (isPawn) {
-                if (move.length() == 3 || move.length() == 4) {
-                    if (pieceToCheck.isValidPosition(move.substring(1))) {
-                        pieceToMove.add(pieceToCheck);
-                    }
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            } else {
-                if (pieceToMove.size() == 1) { // the valid piece is found
-                    if (move.length() >= 3 && move.length() < 6) { // f.e. Ne4
-                        if (pieceToCheck.isValidPosition(move.substring(1))) {
-                            pieceToMove.add(pieceToCheck);
-                        } 
-                    } else {
-                        throw new IllegalArgumentException();
-                    }
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            }
-        }
-
-        if (isPawn) {
-            if (pieceToMove.size() == 1) { // the valid piece is found
-                if (move.length() == 3 || move.length() == 4) { // f.e. de4
-                    pieceToMove.get(0).setPosition(move.substring(0));
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            } else {
-                throw new IllegalArgumentException(); // the given move is not specific enough (for example Ne4 instead of Nde4)
-            }
-        } else {
-            if (pieceToMove.size() == 1) { // the valid piece is found
-                if (move.length() == 3) { // f.e. Ne4
-                    pieceToMove.get(0).setPosition(move.substring(1)); // when setting position we don't look at the initial of the piece
-                } else if (move.length() == 4) { //f.e. Nde4 or N1e4 or Nxe4
-                    pieceToMove.get(0).setPosition(move.substring(2, 4));
-                } else if (move.length() == 5) { // f.e. Ndxe4
-                    pieceToMove.get(0).setPosition(move.substring(2, 5));
-                }
-            } else {
-                throw new IllegalArgumentException();
-            }
-        }
-
         // validation of the actual position happens in the chess pieces classes
+        // isValidPosition checks for (1) initial, (2) right piece is referred if specified (N(d)e4), (3) the actual position
+        ChessPiece pieceToMove = null;
+        for (ChessPiece piece : pieces) {
+            if (piece.isValidPosition(move)) {
+                if (pieceToMove == null) {
+                    pieceToMove = piece;
+                } else {
+                    throw new IllegalArgumentException(); 
+                    // there were several pieces available (meaning chess notation did not specify which piece f.e.
+                    // Nde4 vs. Ne4, throw error
+                }
+            }
+        }
     }
 
     public boolean getColorIsWhite() {
