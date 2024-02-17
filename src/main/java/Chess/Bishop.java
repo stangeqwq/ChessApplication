@@ -16,6 +16,7 @@ public class Bishop implements ChessPiece {
     }
     public void setPosition(String position) {
         if (isValidPosition(position)) {
+            // we only take "a4" f.e. type not whole position "Ndxe4" this must be validated
             this.position = position;
         }
     }
