@@ -12,6 +12,11 @@ public class Queen implements ChessPiece{
     }
     
     public boolean isValidPosition(String position){
+        if (Character.isLowerCase(position.charAt(0))) {
+            return false; //it is a pawn
+        } else {
+            
+        }
         return true;
     }
     public void setPosition(String position) {

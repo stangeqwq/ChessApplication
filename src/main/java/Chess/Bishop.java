@@ -12,6 +12,11 @@ public class Bishop implements ChessPiece {
     }
     
     public boolean isValidPosition(String position){ // takes a position without an initial
+        if (Character.isLowerCase(position.charAt(0))) {
+            return false; //it is a pawn
+        } else {
+            
+        }
         return true;
     }
     public void setPosition(String position) {

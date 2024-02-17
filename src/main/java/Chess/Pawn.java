@@ -12,7 +12,11 @@ public class Pawn implements ChessPiece {
     }
     
     public boolean isValidPosition(String position){
-        
+        if (Character.isLowerCase(position.charAt(0))) {
+            //it is a pawn
+        } else {
+            return false; // not a pawn
+        }
         return true;
     }
     public void setPosition(String position) {
