@@ -11,7 +11,7 @@ public class Rook implements ChessPiece{
         this.position = position;
     }
     
-    private boolean isValidPosition(String position){
+    public boolean isValidPosition(String position){
         return true;
     }
     public void setPosition(String position) {

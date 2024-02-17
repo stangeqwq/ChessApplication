@@ -47,31 +47,38 @@ public class Player {
         }
         
         // check which chess piece to move (or set position of) in the players list of chess pieces
+        // if several chess pieces could move in that position, and which piece is not specified, throw error
+        // validPosition will check (1) this is the right piece referred (f.e. N(d)e4), (2) the actual position can be moved to
+
         List<ChessPiece> pieceToMove = new ArrayList<ChessPiece>();
         for (ChessPiece pieceToCheck : piecesToCheck) { // find pieces that could move to that position
             if (isPawn) {
-                if (move.length() == 4) {
+                if (move.length() == 3 || move.length() == 4) {
                     if (pieceToCheck.isValidPosition(move.substring(1))) {
                         pieceToMove.add(pieceToCheck);
                     }
-                } else if (move.length() == 3) {
-                    if (pieceToCheck.isValidPosition(move.substring(0))) {
-                        pieceToMove.add(pieceToCheck);
-                    }
+                } else {
+                    throw new IllegalArgumentException();
                 }
             } else {
-                if (pieceToCheck.isValidPosition()) {
-                    pieceToMove.add(pieceToCheck);
+                if (pieceToMove.size() == 1) { // the valid piece is found
+                    if (move.length() >= 3 && move.length() < 6) { // f.e. Ne4
+                        if (pieceToCheck.isValidPosition(move.substring(1))) {
+                            pieceToMove.add(pieceToCheck);
+                        } 
+                    } else {
+                        throw new IllegalArgumentException();
+                    }
+                } else {
+                    throw new IllegalArgumentException();
                 }
             }
         }
 
         if (isPawn) {
             if (pieceToMove.size() == 1) { // the valid piece is found
-                if (move.length() == 3) { // f.e. de4
+                if (move.length() == 3 || move.length() == 4) { // f.e. de4
                     pieceToMove.get(0).setPosition(move.substring(0));
-                } else if (move.length() == 4) { //f.e. dxe4
-                    pieceToMove.get(0).setPosition(move.substring(1));
                 } else {
                     throw new IllegalArgumentException();
                 }

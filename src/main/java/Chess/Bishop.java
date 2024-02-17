@@ -11,7 +11,7 @@ public class Bishop implements ChessPiece {
         this.position = position;
     }
     
-    private boolean isValidPosition(String position){
+    public boolean isValidPosition(String position){ // takes a position without an initial
         return true;
     }
     public void setPosition(String position) {
