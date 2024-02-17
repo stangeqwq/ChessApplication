@@ -23,7 +23,7 @@ public class Player {
     }
 
     public void move(String move) {
-        // input will be of form "Ke4" (king to e4) or "Ne5" etc.
+        // input will be of form "Ke4" (king to e4) or "Ne5" etc. Nxe4, or Ndxe4 (different column) or N3xe4 (different row)
         // check which chess piece to move in the players list of chess pieces
         // have
         // validation of the actual position happens in the chess pieces classes
