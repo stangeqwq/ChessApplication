@@ -2,7 +2,7 @@ package Chess;
 
 public class Pawn implements ChessPiece {
     private String position = "a1";
-    private Character initial;
+    private Character initial = null;
 
     private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};

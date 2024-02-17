@@ -21,7 +21,7 @@ public class Player {
         setupPieces(isWhite);
         this.setOpponent(opponent);
     }
-    public List<ChessPiece> findPieceType(Character pieceInitial) {
+    private List<ChessPiece> findPieceType(Character pieceInitial) {
         List<ChessPiece> pieceType = new ArrayList<ChessPiece>();
         for (ChessPiece piece : pieces) {
             if (piece.getInitial() == pieceInitial) {
@@ -35,9 +35,21 @@ public class Player {
     }
     public void move(String move) {
         // input will be of form "Ke4" (king to e4) or "Ne5" etc. Nxe4, or Ndxe4 (different column) or N3xe4 (different row)
+
         List<ChessPiece> piecesToCheck = findPieceType(move.charAt(0));
-        // check which chess piece to move in the players list of chess pieces
-        // have
+        // check which chess piece to move (or set position of) in the players list of chess pieces
+
+        if (piecesToCheck.size() == 1) { // the valid piece is found
+            if (move.length() == 3) { // f.e. Ne4
+                piecesToCheck.get(0).setPosition(move.substring(1));
+            } else if (move.length() == 4) { //f.e. Nde4 or N1e4 or Nxe4
+                piecesToCheck.get(0).setPosition(move.substring(2, 4));
+            } else if (move.length() == 5) { // f.e. Ndxe4
+                piecesToCheck.get(0).setPosition(move.substring(2, 5));
+            }
+        } else {
+            throw new IllegalArgumentException();
+        }
         // validation of the actual position happens in the chess pieces classes
     }
 
