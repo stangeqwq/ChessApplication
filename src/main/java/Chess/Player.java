@@ -36,20 +36,42 @@ public class Player {
     public void move(String move) {
         // input will be of form "Ke4" (king to e4) or "Ne5" etc. Nxe4, or Ndxe4 (different column) or N3xe4 (different row)
         List<ChessPiece> piecesToCheck;
-
+        boolean isPawn = false;
         if (Character.isLowerCase(move.charAt(0))) {
+            isPawn = true;
+        }
+        if (isPawn) {
             piecesToCheck = findPieceType(null);
         } else {
             piecesToCheck = findPieceType(move.charAt(0));
         }
         
         // check which chess piece to move (or set position of) in the players list of chess pieces
+        List<ChessPiece> pieceToMove = new ArrayList<ChessPiece>();
+        for (ChessPiece pieceToCheck : piecesToCheck) {
+            if (isPawn) {
+                if (move.length() == 4) {
+                    if (pieceToCheck.isValidPosition(move.substring(1))) {
+                        pieceToMove.add(pieceToCheck);
+                    }
+                } else if (move.length() == 3) {
+                    if (pieceToCheck.isValidPosition(move.substring(0))) {
+                        pieceToMove.add(pieceToCheck);
+                    }
+                }
+            } else {
+                if (pieceToCheck.isValidPosition()) {
+                    pieceToMove.add(pieceToCheck);
+                }
+            }
+        }
+
         if (Character.isLowerCase(move.charAt(0))) {
-            if (piecesToCheck.size() == 1) { // the valid piece is found
+            if (pieceToMove.size() == 1) { // the valid piece is found
                 if (move.length() == 3) { // f.e. de4
-                    piecesToCheck.get(0).setPosition(move.substring(0));
+                    piecesToMove.get(0).setPosition(move.substring(0));
                 } else if (move.length() == 4) { //f.e. dxe4
-                    piecesToCheck.get(0).setPosition(move.substring(0));
+                    piecesToMove.get(0).setPosition(move.substring(1));
                 } else {
                     throw new IllegalArgumentException();
                 }
@@ -59,7 +81,7 @@ public class Player {
         } else {
             if (piecesToCheck.size() == 1) { // the valid piece is found
                 if (move.length() == 3) { // f.e. Ne4
-                    piecesToCheck.get(0).setPosition(move.substring(1));
+                    piecesToCheck.get(0).setPosition(move.substring(1)); // when setting position we don't look at the initial of the piece
                 } else if (move.length() == 4) { //f.e. Nde4 or N1e4 or Nxe4
                     piecesToCheck.get(0).setPosition(move.substring(2, 4));
                 } else if (move.length() == 5) { // f.e. Ndxe4
