@@ -2,6 +2,7 @@ package Chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class ChessGame {
     private Player player1;
@@ -61,7 +62,49 @@ public class ChessGame {
         return movelist;
     }
     public String getBoard() {
-        String board = "";
+        HashMap<String, String> toPrint = new HashMap<>();
+        for (ChessPiece piece : player1.getPieces()) {
+            if (piece.getInitial() == null) {
+                toPrint.put(piece.getPosition(), "P");
+            } else {
+                toPrint.put(piece.getPosition(), Character.toString(piece.getInitial()));
+            }
+        }
+        for (ChessPiece piece : player2.getPieces()) {
+            if (piece.getInitial() == null) {
+                toPrint.put(piece.getPosition(), "p");
+            } else {
+                toPrint.put(piece.getPosition(), Character.toString(Character.toLowerCase(piece.getInitial())));
+            }
+        }
+        
+        String board = String.format("A     B     C     D     E     F     G     H\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "8 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 8\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "7 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 7\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "6 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 6\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "5 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 5\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "4 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 4\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "3 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 3\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "2 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 2\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "1 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 1\n" + //
+                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                        "     A     B     C     D     E     F     G     H", //
+                        toPrint.getOrDefault("a8", " "), toPrint.getOrDefault("", " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
+                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
+                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
+                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
+                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
+                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
+                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
+                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "));
         return board;
     }
     public String toString() {
@@ -75,6 +118,7 @@ public class ChessGame {
         System.out.println(game1.toString());
         game1.move("d4");
         System.out.println(game1.toString());
+        System.out.println(game1.getBoard());
         
     }
 }

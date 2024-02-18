@@ -109,6 +109,9 @@ public class Player {
         }
         return piecePositions;
     }
+    public List<ChessPiece> getPieces() {
+        return pieces;
+    }
    
     public static void main(String args[]) {
         System.out.println("Hello world!");
