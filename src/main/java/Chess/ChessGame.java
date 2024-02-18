@@ -164,7 +164,13 @@ public class ChessGame {
 
         game1.move("c4");
         System.out.println(game1.getBoard());
-        // game1.move("fxe5"); ERROR AS EXPECTED
-
+        game1.move("g4");
+        System.out.println(game1.getBoard());
+        game1.move("c3");
+        System.out.println(game1.getBoard());
+        game1.move("bxc3");
+        System.out.println(game1.getBoard());
+        System.out.println(game1.getBlackPlayer().getPiecePositions()); // black piece needs to be removed from the
+        // player when captured
     }
 }

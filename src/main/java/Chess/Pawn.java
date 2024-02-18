@@ -139,6 +139,12 @@ public class Pawn implements ChessPiece {
                 capturing = true;
             }
         }
+        if (!capturing && (move.charAt(move.length() - 2) == (char) (this.position.charAt(0) - 1)
+                || move.charAt(move.length() - 2) == (char) (this.position.charAt(0) + 1))) { // check if pawn not
+                                                                                              // capturing but specified
+                                                                                              // move is not forward
+            return false;
+        }
         for (String friendlyPosition : this.getOwner().getPiecePositions()) {
             if (move.substring(move.length() - 2).equals(friendlyPosition.substring(friendlyPosition.length() - 2))) {
                 return false;
@@ -193,6 +199,12 @@ public class Pawn implements ChessPiece {
     public static void main(String args[]) {
         Pawn pawn1 = new Pawn("e2", true);
         System.out.println(pawn1.getValidPositionsTo());
-
+        boolean capturing = false;
+        String move = "f3";
+        String position = "g2";
+        System.out.println(move.charAt(move.length() - 1));
+        System.out.println((char) (position.charAt(0) - 1));
+        System.out.println((!capturing && (move.charAt(move.length() - 1) == (char) (position.charAt(0) - 1)
+                || move.charAt(move.length() - 1) == (char) (position.charAt(0) + 1))));
     }
 }
