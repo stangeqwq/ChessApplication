@@ -70,6 +70,7 @@ public class Pawn implements ChessPiece {
     public void setPosition(String move) {
         if (isValidPosition(move)) {
             this.position = move.substring(move.length()-2);
+            firstMove = false;
         }
     }
     public Character getInitial() {

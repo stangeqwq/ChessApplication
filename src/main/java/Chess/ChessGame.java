@@ -43,9 +43,10 @@ public class ChessGame {
     public String getMoves() {
         String movelist = "";
         int twoCount = 0;
+        int moveCount = 1;
         for (String move : moves) {
             if (twoCount == 0) {
-                movelist += String.format("%i. ", moves.size()/2);
+                movelist += String.format("%o. ", moveCount);
             }
             if (twoCount < 2) {
                 movelist += move += " ";
@@ -54,9 +55,14 @@ public class ChessGame {
             if (twoCount == 2) {
                 movelist += "\n";
                 twoCount = 0;
+                moveCount += 1;
             }
         }
         return movelist;
+    }
+    public String getBoard() {
+        String board = "";
+        return board;
     }
     public String toString() {
         return String.format("Players: %s (white), %s (black) %s", player1.getName(), player2.getName(), "\n" + this.getMoves());
@@ -65,6 +71,10 @@ public class ChessGame {
     public static void main(String args[]) {
         ChessGame game1 = new ChessGame("Alice", "Bob");
         game1.move("e4");
+        game1.move("e5");
         System.out.println(game1.toString());
+        game1.move("d4");
+        System.out.println(game1.toString());
+        
     }
 }
