@@ -36,15 +36,29 @@ public class Pawn implements ChessPiece {
         if (Character.isLowerCase(move.charAt(0))) {
             //it is a pawn
             //check first move (allow double move in columns)
-            if (firstMove) {
-                if (move.charAt(move.length()-1) - this.position.charAt(1) <= 2 && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
-                    return !isOccupiedToPosition(move.substring(move.length()-2));
-                } else {
-                    return false;
-                }
-            } else { // not first move
-                if (move.charAt(move.length()-1) - this.position.charAt(1) == 1 && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
+            if (isWhite) {
+                if (firstMove) {
+                    if ((move.charAt(move.length()-1) - this.position.charAt(1) == 2 || move.charAt(move.length()-1) - this.position.charAt(1) == 1) && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
+                        return !isOccupiedToPosition(move.substring(move.length()-2));
+                    } else {
+                        return false;
+                    }
+                } else { // not first move
+                    if (move.charAt(move.length()-1) - this.position.charAt(1) == 1 && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
 
+                    }
+                }
+            } else {
+                if (firstMove) {
+                    if ((move.charAt(move.length()-1) - this.position.charAt(1) == -2 || move.charAt(move.length()-1) - this.position.charAt(1) == -1) && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
+                        return !isOccupiedToPosition(move.substring(move.length()-2));
+                    } else {
+                        return false;
+                    }
+                } else { // not first move
+                    if (move.charAt(move.length()-1)  - this.position.charAt(1) == -1 && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
+
+                    }
                 }
             }
 

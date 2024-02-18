@@ -62,7 +62,7 @@ public class Player {
     private void setupPieces(boolean isWhite) {
         if (isWhite) {
             for (int i = 0; i < 8; i++) {
-                pieces.add(new Pawn(String.format("%c%c", (char)('a' + i), '2')));
+                pieces.add(new Pawn(String.format("%c%c", (char)('a' + i), '2'), isWhite));
             }
             pieces.add(new Knight(String.format("%c%c", 'b', '1' )));
             pieces.add(new Knight(String.format("%c%c", 'g', '1' )));
@@ -76,7 +76,7 @@ public class Player {
 
         } else {
             for (int i = 0; i < 8; i++) {
-                pieces.add(new Pawn(String.format("%c%c", (char)('a' + i), '7')));
+                pieces.add(new Pawn(String.format("%c%c", (char)('a' + i), '7'), isWhite));
             }
             pieces.add(new Knight(String.format("%c%c", 'b', '8' )));
             pieces.add(new Knight(String.format("%c%c", 'g', '8' )));
@@ -126,5 +126,6 @@ public class Player {
         game1.move("e5");
         System.out.println(game1.getWhitePlayer().getPiecePositions());
         System.out.println(game1.getBlackPlayer().getPiecePositions());
+        System.out.println(game1.getMoves());
     }
 }
