@@ -193,5 +193,15 @@ public class ChessGame {
         System.out.println(game2.getBoard());
         game2.move("Nf3");
         System.out.println(game2.getBoard());
+        game2.move("e5");
+        System.out.println(game2.getBoard());
+        game2.move("Nxe5");
+        System.out.println(game2.getBoard());
+        System.out.println(game2.getBlackPlayer().getPiecePositions());
+        System.out.println(game2.toString());
+        game2.move("Nc6");
+        System.out.println(game2.getBoard());
+        game2.move("Nd2");
+        System.out.println(game2.getBoard());
     }
 }

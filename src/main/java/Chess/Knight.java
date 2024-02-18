@@ -27,6 +27,20 @@ public class Knight implements ChessPiece {
         }
     }
 
+    public List<String> getValidPositionsTo() {
+        return this.validPositionsTo;
+    }
+
+    private boolean inValidPositionsTo(String toPosition) {
+        for (String position : this.getValidPositionsTo()) {
+            if (position.equals(toPosition)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public boolean isValidPosition(String move) {
         if (Character.isLowerCase(move.charAt(0))) {
             return false; // it is a pawn
@@ -48,24 +62,18 @@ public class Knight implements ChessPiece {
                 }
                 if (capturing) {
                     for (String position : this.getOwner().getOpponent().getPiecePositions()) {
-                        if (position.equals(toPosition)) {
+                        if (position.equals(toPosition) && inValidPositionsTo(toPosition)) {
                             return true;
                         }
                     }
                     return false; // if you specify x, you must actually occupy an opponent piece position
-                }
-
-                for (String position : validPositionsTo) {
-                    if (toPosition.equals(position)) {
-                        return true;
-                    }
+                } else {
+                    return inValidPositionsTo(toPosition);
                 }
             } else { // not the right initial
                 return false;
             }
-
         }
-        return true;
     }
 
     private List<String> generateValidPositionsTo(String position) {
