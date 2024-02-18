@@ -76,6 +76,20 @@ public class Player {
         }
     }
 
+    public void addPiece(String position, Character pieceType) {
+        if (pieceType == 'N') {
+            pieces.add(new Knight(position));
+        } else if (pieceType == 'B') {
+            pieces.add(new Bishop(position));
+        } else if (pieceType == 'Q') {
+            pieces.add(new Queen(position));
+        } else if (pieceType == 'R') {
+            pieces.add(new Rook(position));
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private void setupPieces(boolean isWhite) {
         if (isWhite) {
             for (int i = 0; i < 8; i++) {

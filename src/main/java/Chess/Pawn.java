@@ -2,6 +2,7 @@ package Chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Pawn implements ChessPiece {
     private String position = "a1";
@@ -178,9 +179,25 @@ public class Pawn implements ChessPiece {
         }
     }
 
+    private void transformPawn() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Convert Pawn to (R, N, B, Q):");
+        String pieceType = scan.nextLine();
+        if (pieceType == "R" || pieceType == "N" || pieceType == "B" || pieceType == "Q") {
+            this.getOwner().removePieceAtPosition(this.position);
+            this.getOwner().addPiece(this.position, pieceType.charAt(0));
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public void setPosition(String move) {
         if (isValidPosition(move)) {
             this.position = move.substring(move.length() - 2);
+            if (this.position.charAt(1) == '1' || this.position.charAt(1) == '8') { // the pawn can become the other
+                                                                                    // pieces
+                transformPawn();
+            }
             this.getOwner().getOpponent().removePieceAtPosition(this.position);
             firstMove = false;
             validPositionsTo.clear();
