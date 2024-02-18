@@ -135,6 +135,7 @@ public class ChessGame {
     }
 
     public static void main(String args[]) {
+        // TESTING PAWNS
         ChessGame game1 = new ChessGame("Alice", "Bob");
         game1.move("e4");
         System.out.println(game1.getBoard());
@@ -156,9 +157,14 @@ public class ChessGame {
                                                                         // player when captured
         game1.move("c5");
         System.out.println(game1.getBoard());
-        game1.move("e5"); // testing when own piece moves to own occupied piece
+        // game1.move("e5"); // testing when own piece moves to own occupied piece ERROR
+        // AS EXPECTED
+        game1.move("f4");
+        System.out.println(game1.getBoard());
+
         game1.move("c4");
         System.out.println(game1.getBoard());
+        // game1.move("fxe5"); ERROR AS EXPECTED
 
     }
 }

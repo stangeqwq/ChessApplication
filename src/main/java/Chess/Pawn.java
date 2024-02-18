@@ -94,7 +94,17 @@ public class Pawn implements ChessPiece {
     }
 
     private boolean isOccupiedToPosition(String toPosition, boolean capturing) {
+        List<String> piecesToCheck = new ArrayList<String>();
         for (String position : this.getOwner().getOpponent().getPiecePositions()) {
+            piecesToCheck.add(position);
+        }
+        for (String position : this.getOwner().getPiecePositions()) {
+            if (this.position.equals(position.substring(position.length() - 2))) {
+                continue; // don't add current piece position
+            }
+            piecesToCheck.add(position);
+        }
+        for (String position : piecesToCheck) {
             if (position.substring(position.length() - 2).equals(toPosition)) {
                 // if a piece is at destination position, then occupied
                 return true;
