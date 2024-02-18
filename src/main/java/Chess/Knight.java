@@ -20,17 +20,17 @@ public class Knight implements ChessPiece{
         }
     }
     
-    public boolean isValidPosition(String position){
-        if (Character.isLowerCase(position.charAt(0))) {
+    public boolean isValidPosition(String move){
+        if (Character.isLowerCase(move.charAt(0))) {
             return false; //it is a pawn
         } else {
             
         }
         return true;
     }
-    public void setPosition(String position) {
-        if (isValidPosition(position)) {
-            this.position = position;
+    public void setPosition(String move) {
+        if (isValidPosition(move)) {
+            this.position = move;
         }
     }
     public Character getInitial() {

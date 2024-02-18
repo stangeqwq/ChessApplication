@@ -36,6 +36,9 @@ public class Player {
                 }
             }
         }
+        if (pieceToMove == null) {
+            throw new IllegalArgumentException(); // no valid position for the piece type (wrong argument)
+        }
         pieceToMove.setPosition(move);
     }
 
@@ -95,14 +98,13 @@ public class Player {
     public String getName() {
         return this.name;
     }
-    public String getPiecePositions() {
-        String piecePositions = "";
+    public List<String> getPiecePositions() {
+        List<String> piecePositions = new ArrayList<String>();
         for (ChessPiece piece : pieces) {
             if (piece.getInitial() != null) {
-                piecePositions += piece.getInitial() + piece.getPosition() + " ";
-
+                piecePositions.add(piece.getInitial() + piece.getPosition());
             } else {
-                piecePositions += piece.getPosition() + " ";
+                piecePositions.add(piece.getPosition());
             }
         }
         return piecePositions;
@@ -117,5 +119,9 @@ public class Player {
         System.out.println(game1.getBlackPlayer().getOpponent().getName());
         System.out.println((char) ('a'+1));
         System.out.println(game1.getWhitePlayer().getPiecePositions());
+        System.out.println(game1.getBlackPlayer().getPiecePositions());
+        game1.move("e4");
+        System.out.println(game1.getWhitePlayer().getPiecePositions());
+        System.out.println(game1.getBlackPlayer().getPiecePositions());
     }
 }
