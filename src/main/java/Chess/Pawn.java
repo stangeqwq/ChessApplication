@@ -6,12 +6,14 @@ public class Pawn implements ChessPiece {
     private Player owner = null;
     private boolean allowCapture = false;
     private boolean firstMove = true;
+    private boolean isWhite = true;
 
     private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
 
-    public Pawn(String position) {
+    public Pawn(String position, boolean isWhite) {
         this.position = position;
+        this.isWhite = isWhite;
     }
     public Player getOwner() {
         return owner;
@@ -23,7 +25,7 @@ public class Pawn implements ChessPiece {
     }
     private boolean isOccupiedToPosition(String toPosition) {
         for (String position : this.getOwner().getOpponent().getPiecePositions()) {
-            if (position.substring(-2) == toPosition || position.charAt(position.length()-1) - toPosition.charAt(position.length()-1) == 1) {
+            if (position.substring(position.length()-2) == toPosition || position.charAt(position.length()-1) - toPosition.charAt(toPosition.length()-1) == 1) { // a piece is infront
                 return true;
             } 
         }
@@ -36,7 +38,7 @@ public class Pawn implements ChessPiece {
             //check first move (allow double move in columns)
             if (firstMove) {
                 if (move.charAt(move.length()-1) - this.position.charAt(1) <= 2 && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
-                    return !isOccupiedToPosition(move.substring(-2));
+                    return !isOccupiedToPosition(move.substring(move.length()-2));
                 } else {
                     return false;
                 }
@@ -51,9 +53,9 @@ public class Pawn implements ChessPiece {
         }
         return true;
     }
-    public void setPosition(String position) {
-        if (isValidPosition(position)) {
-            this.position = position;
+    public void setPosition(String move) {
+        if (isValidPosition(move)) {
+            this.position = move.substring(move.length()-2);
         }
     }
     public Character getInitial() {

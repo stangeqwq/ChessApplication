@@ -30,7 +30,7 @@ public class Rook implements ChessPiece{
     }
     public void setPosition(String move) {
         if (isValidPosition(move)) {
-            this.position = move;
+            this.position = move.substring(move.length()-2);
         }
 
     }
