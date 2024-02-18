@@ -187,5 +187,11 @@ public class ChessGame {
         // that position) (to transform you have to remove yourself and add)
         game1.move("exf8");
         System.out.println(game1.getBoard());
+
+        // TESTING OUT THE KNIGHT CLASSES
+        ChessGame game2 = new ChessGame("Alice", "Bob");
+        System.out.println(game2.getBoard());
+        game2.move("Nf3");
+        System.out.println(game2.getBoard());
     }
 }

@@ -14,6 +14,7 @@ public class Knight implements ChessPiece {
 
     public Knight(String position) {
         this.position = position;
+        validPositionsTo = generateValidPositionsTo(position);
     }
 
     public Player getOwner() {
@@ -32,11 +33,13 @@ public class Knight implements ChessPiece {
         if (move.length() >= 4 && move.charAt(move.length() - 3) == 'x') { // f.e. Nxe4, or Ndxe4
             capturing = true;
         } else { // not capturing but specified which knight f.e. Nde4 or N1e4
-            if (move.charAt(move.length() - 3) == this.getPosition().charAt(0)
-                    || move.charAt(move.length() - 3) == this.getPosition().charAt(1)) {
+            if (move.length() >= 4) {
+                if (move.charAt(move.length() - 3) == this.getPosition().charAt(0)
+                        || move.charAt(move.length() - 3) == this.getPosition().charAt(1)) {
 
-            } else {
-                return false;
+                } else {
+                    return false;
+                }
             }
         }
         if (capturing) {
@@ -52,7 +55,7 @@ public class Knight implements ChessPiece {
         } else {
             if (move.charAt(0) == this.getInitial()) {
                 for (String position : validPositionsTo) {
-                    if (toPosition == position) {
+                    if (toPosition.equals(position)) {
                         return true;
                     }
                 }
