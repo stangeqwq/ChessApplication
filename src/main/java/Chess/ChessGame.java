@@ -126,7 +126,6 @@ public class ChessGame {
         System.out.println(game1.toString());
         System.out.println(game1.getBoard());
         System.out.println(game1.getBlackPlayer().getPiecePositions());
-        System.out.println(game1.toString());
-        
+        System.out.println(game1.toString()); 
     }
 }
