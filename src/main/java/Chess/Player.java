@@ -71,8 +71,8 @@ public class Player {
             pieces.add(new Bishop(String.format("%c%c", 'c', '1' )));
             pieces.add(new Bishop(String.format("%c%c", 'f', '1' )));
 
-            pieces.add(new King(String.format("%c%c", 'd', '1' )));
-            pieces.add(new Queen(String.format("%c%c", 'e', '1' )));
+            pieces.add(new King(String.format("%c%c", 'e', '1' )));
+            pieces.add(new Queen(String.format("%c%c", 'd', '1' )));
 
         } else {
             for (int i = 0; i < 8; i++) {
@@ -85,8 +85,8 @@ public class Player {
             pieces.add(new Bishop(String.format("%c%c", 'c', '8' )));
             pieces.add(new Bishop(String.format("%c%c", 'f', '8' )));
             
-            pieces.add(new King(String.format("%c%c", 'd', '8' )));
-            pieces.add(new Queen(String.format("%c%c", 'e', '8' )));
+            pieces.add(new King(String.format("%c%c", 'e', '8' )));
+            pieces.add(new Queen(String.format("%c%c", 'd', '8' )));
         }
         for (ChessPiece piece : pieces) {
             piece.setOwner(this);

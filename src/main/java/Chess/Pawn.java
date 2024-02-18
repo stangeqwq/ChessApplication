@@ -27,9 +27,21 @@ public class Pawn implements ChessPiece {
         for (String position : this.getOwner().getOpponent().getPiecePositions()) {
             if (position.substring(position.length()-2) == toPosition) {  
                 // if a piece is at destination position, then occupied
-                if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2) && position.charAt(position.length() - 1) - toPosition.charAt(toPosition.length() - 1) == 1)
-                // f.e. a piece is infront (d2 -> d4) but there is someone at (d3 or d4), so occupied
-                // when moving there, there is a piece (same column [length() - 2]) in front)
+                if (isWhite) {
+                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2) && position.charAt(position.length() - 1) - toPosition.charAt(toPosition.length() - 1) == -1) {
+                        // f.e. a piece is infront (d2 -> d4) but there is someone at (d3 or d4), so occupied
+                       // when moving there, there is a piece (same column [length() - 2]) in front)
+                       return true;
+                   }
+                } else { // for black pawns
+                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2) && position.charAt(position.length() - 1) - toPosition.charAt(toPosition.length() - 1) == 1) {
+                        // f.e. a piece is infront (d7 -> d5) but there is someone at (d6), so occupied
+                       // when moving there, there is a piece (same column [length() - 2]) in front)
+                       return true;
+                   }
+                }
+
+               
                 return true;
             } 
         }
@@ -42,19 +54,19 @@ public class Pawn implements ChessPiece {
             //check first move (allow double move in columns)
             if (isWhite) {
                 if (firstMove) {
-                    if ((move.charAt(move.length()-2) == this.position.charAt(0))) { // must be same column (e)4 -> (e)2
-                        if ((move.charAt(move.length()-1) - this.position.charAt(1) == 2 || move.charAt(move.length()-1) - this.position.charAt(1) == 1)) { // must be one or two squares in front
-                            return !isOccupiedToPosition(move.substring(move.length()-2));
-                        }  
+                    if ((move.charAt(move.length()-1) - this.position.charAt(1) == 2 || move.charAt(move.length()-1) - this.position.charAt(1) == 1) && (move.charAt(move.length()-2) == this.position.charAt(0))) { // "e2 -> e4"
+                        return !isOccupiedToPosition(move.substring(move.length()-2));
                     } else {
                         return false;
                     }
                 } else { // not first move
                     if (move.charAt(move.length()-1) - this.position.charAt(1) == 1 && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
-
+                        return !isOccupiedToPosition(move);
+                    } else {
+                        return false;
                     }
                 }
-            } else {
+            } else { // it is a black pawn so going downwards
                 if (firstMove) {
                     if ((move.charAt(move.length()-1) - this.position.charAt(1) == -2 || move.charAt(move.length()-1) - this.position.charAt(1) == -1) && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
                         return !isOccupiedToPosition(move.substring(move.length()-2));
@@ -63,16 +75,17 @@ public class Pawn implements ChessPiece {
                     }
                 } else { // not first move
                     if (move.charAt(move.length()-1)  - this.position.charAt(1) == -1 && move.charAt(move.length()-2) == this.position.charAt(0)) { // "e2 -> e4"
-
+                        return true;
+                    } else {
+                        return false;
                     }
                 }
             }
-
         } else {
             return false; // not a pawn
         }
-        return true;
     }
+
     public void setPosition(String move) {
         if (isValidPosition(move)) {
             this.position = move.substring(move.length()-2);
