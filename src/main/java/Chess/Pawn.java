@@ -1,5 +1,8 @@
 package Chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pawn implements ChessPiece {
     private String position = "a1";
     private Character initial = null;
@@ -10,6 +13,7 @@ public class Pawn implements ChessPiece {
 
     private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
+    private List<String> validPositionsTo = new ArrayList<String>();
 
     public Pawn(String position, boolean isWhite) {
         this.position = position;
@@ -22,6 +26,25 @@ public class Pawn implements ChessPiece {
         if (this.owner == null) {
             this.owner = owner;
         }
+    }
+    private List<String> generateValidPositionsTo(String position) {
+        if (isWhite) {
+            if (firstMove) {
+                // add 1/2 row increase, when row in validrows
+
+            } else { // not first move
+                //add 1 row increase, when row in valid rows
+
+            }
+        } else { // it is a black pawn so going downwards
+            if (firstMove) { // add 1/2 row decrease, when row in validrows
+               
+            } else { // add 1 row decrease, when row in validrows
+                // not first move
+
+            }
+        }
+        return validPositionsTo;
     }
     private boolean isOccupiedToPosition(String toPosition) {
         for (String position : this.getOwner().getOpponent().getPiecePositions()) {
@@ -90,6 +113,8 @@ public class Pawn implements ChessPiece {
         if (isValidPosition(move)) {
             this.position = move.substring(move.length()-2);
             firstMove = false;
+            validPositionsTo.clear(); 
+            validPositionsTo = generateValidPositionsTo(this.position);
         }
     }
     public Character getInitial() {

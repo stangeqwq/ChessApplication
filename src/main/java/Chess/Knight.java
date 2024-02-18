@@ -1,5 +1,8 @@
 package Chess;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Knight implements ChessPiece{
     private String position = "a1";
     private Character initial = 'N';
@@ -7,6 +10,7 @@ public class Knight implements ChessPiece{
 
     private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
+    private List<String> validPositionsTo = new ArrayList<String>();
     
     public Knight(String position) {
         this.position = position;

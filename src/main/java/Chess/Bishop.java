@@ -1,5 +1,8 @@
 package Chess;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Bishop implements ChessPiece {
     private String position = "a1";
     private Character initial = 'B';
@@ -7,6 +10,7 @@ public class Bishop implements ChessPiece {
 
     private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
+    private List<String> validPositionsTo = new ArrayList<String>();
 
     public Bishop(String position) {
         this.position = position;
