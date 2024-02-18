@@ -7,7 +7,6 @@ import java.util.HashMap;
 public class ChessGame {
     private Player player1;
     private Player player2;
-    private List<List<String>> chessBoard = new ArrayList<List<String>>();
     private boolean finished = false;
     private boolean whiteTurn = true;
     private List<String> moves = new ArrayList<String>();
