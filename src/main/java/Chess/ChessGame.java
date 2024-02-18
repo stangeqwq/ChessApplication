@@ -11,11 +11,12 @@ public class ChessGame {
     private boolean finished = false;
     private boolean whiteTurn = true;
     private List<String> moves = new ArrayList<String>();
-    
+
     public ChessGame(String player1, String player2) {
         this.player1 = new Player(player1, true);
         this.player2 = new Player(player2, false, this.player1);
     }
+
     public void move(String move) {
         if (whiteTurn) {
             player1.move(move);
@@ -27,6 +28,7 @@ public class ChessGame {
             whiteTurn = true;
         }
     }
+
     public Player getWhitePlayer() {
         if (player1.getColorIsWhite()) {
             return player1;
@@ -34,6 +36,7 @@ public class ChessGame {
             return player2;
         }
     }
+
     public Player getBlackPlayer() {
         if (player2.getColorIsWhite()) {
             return player1;
@@ -41,6 +44,7 @@ public class ChessGame {
             return player2;
         }
     }
+
     public String getMoves() {
         String movelist = "";
         int twoCount = 0;
@@ -61,6 +65,7 @@ public class ChessGame {
         }
         return movelist;
     }
+
     public String getBoard() {
         HashMap<String, String> toPrint = new HashMap<>();
         for (ChessPiece piece : player1.getPieces()) {
@@ -77,38 +82,56 @@ public class ChessGame {
                 toPrint.put(piece.getPosition(), Character.toString(Character.toLowerCase(piece.getInitial())));
             }
         }
-        
+
         String board = String.format("A     B     C     D     E     F     G     H\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "8 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 8\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "7 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 7\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "6 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 6\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "5 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 5\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "4 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 4\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "3 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 3\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "2 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 2\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "1 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 1\n" + //
-                        "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "     A     B     C     D     E     F     G     H", //
-                        toPrint.getOrDefault("a8", " "), toPrint.getOrDefault("b8", " "), toPrint.getOrDefault("c8", " "), toPrint.getOrDefault("d8", " "), toPrint.getOrDefault("e8", " "), toPrint.getOrDefault("f8", " "), toPrint.getOrDefault("g8", " "), toPrint.getOrDefault("h8", " "), //
-                        toPrint.getOrDefault("a7", " "), toPrint.getOrDefault("b7", " "), toPrint.getOrDefault("c7", " "), toPrint.getOrDefault("d7", " "), toPrint.getOrDefault("e7", " "), toPrint.getOrDefault("f7", " "), toPrint.getOrDefault("g7", " "), toPrint.getOrDefault("h7", " "), //
-                        toPrint.getOrDefault("a6", " "), toPrint.getOrDefault("b6", " "), toPrint.getOrDefault("c6", " "), toPrint.getOrDefault("d6", " "), toPrint.getOrDefault("e6", " "), toPrint.getOrDefault("f6", " "), toPrint.getOrDefault("g6", " "), toPrint.getOrDefault("h6", " "), //
-                        toPrint.getOrDefault("a5", " "), toPrint.getOrDefault("b5", " "), toPrint.getOrDefault("c5", " "), toPrint.getOrDefault("d5", " "), toPrint.getOrDefault("e5", " "), toPrint.getOrDefault("f5", " "), toPrint.getOrDefault("g5", " "), toPrint.getOrDefault("h5", " "), //
-                        toPrint.getOrDefault("a4", " "), toPrint.getOrDefault("b4", " "), toPrint.getOrDefault("c4", " "), toPrint.getOrDefault("d4", " "), toPrint.getOrDefault("e4", " "), toPrint.getOrDefault("f4", " "), toPrint.getOrDefault("g4", " "), toPrint.getOrDefault("h4", " "), //
-                        toPrint.getOrDefault("a3", " "), toPrint.getOrDefault("b3", " "), toPrint.getOrDefault("c3", " "), toPrint.getOrDefault("d3", " "), toPrint.getOrDefault("e3", " "), toPrint.getOrDefault("f3", " "), toPrint.getOrDefault("g3", " "), toPrint.getOrDefault("h3", " "), //
-                        toPrint.getOrDefault("a2", " "), toPrint.getOrDefault("b2", " "), toPrint.getOrDefault("c2", " "), toPrint.getOrDefault("d2", " "), toPrint.getOrDefault("e2", " "), toPrint.getOrDefault("f2", " "), toPrint.getOrDefault("g2", " "), toPrint.getOrDefault("h2", " "), //
-                        toPrint.getOrDefault("a1", " "), toPrint.getOrDefault("b1", " "), toPrint.getOrDefault("c1", " "), toPrint.getOrDefault("d1", " "), toPrint.getOrDefault("e1", " "), toPrint.getOrDefault("f1", " "), toPrint.getOrDefault("g1", " "), toPrint.getOrDefault("h1", " "));
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "8 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 8\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "7 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 7\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "6 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 6\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "5 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 5\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "4 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 4\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "3 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 3\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "2 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 2\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "1 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 1\n" + //
+                "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
+                "     A     B     C     D     E     F     G     H", //
+                toPrint.getOrDefault("a8", " "), toPrint.getOrDefault("b8", " "), toPrint.getOrDefault("c8", " "),
+                toPrint.getOrDefault("d8", " "), toPrint.getOrDefault("e8", " "), toPrint.getOrDefault("f8", " "),
+                toPrint.getOrDefault("g8", " "), toPrint.getOrDefault("h8", " "), //
+                toPrint.getOrDefault("a7", " "), toPrint.getOrDefault("b7", " "), toPrint.getOrDefault("c7", " "),
+                toPrint.getOrDefault("d7", " "), toPrint.getOrDefault("e7", " "), toPrint.getOrDefault("f7", " "),
+                toPrint.getOrDefault("g7", " "), toPrint.getOrDefault("h7", " "), //
+                toPrint.getOrDefault("a6", " "), toPrint.getOrDefault("b6", " "), toPrint.getOrDefault("c6", " "),
+                toPrint.getOrDefault("d6", " "), toPrint.getOrDefault("e6", " "), toPrint.getOrDefault("f6", " "),
+                toPrint.getOrDefault("g6", " "), toPrint.getOrDefault("h6", " "), //
+                toPrint.getOrDefault("a5", " "), toPrint.getOrDefault("b5", " "), toPrint.getOrDefault("c5", " "),
+                toPrint.getOrDefault("d5", " "), toPrint.getOrDefault("e5", " "), toPrint.getOrDefault("f5", " "),
+                toPrint.getOrDefault("g5", " "), toPrint.getOrDefault("h5", " "), //
+                toPrint.getOrDefault("a4", " "), toPrint.getOrDefault("b4", " "), toPrint.getOrDefault("c4", " "),
+                toPrint.getOrDefault("d4", " "), toPrint.getOrDefault("e4", " "), toPrint.getOrDefault("f4", " "),
+                toPrint.getOrDefault("g4", " "), toPrint.getOrDefault("h4", " "), //
+                toPrint.getOrDefault("a3", " "), toPrint.getOrDefault("b3", " "), toPrint.getOrDefault("c3", " "),
+                toPrint.getOrDefault("d3", " "), toPrint.getOrDefault("e3", " "), toPrint.getOrDefault("f3", " "),
+                toPrint.getOrDefault("g3", " "), toPrint.getOrDefault("h3", " "), //
+                toPrint.getOrDefault("a2", " "), toPrint.getOrDefault("b2", " "), toPrint.getOrDefault("c2", " "),
+                toPrint.getOrDefault("d2", " "), toPrint.getOrDefault("e2", " "), toPrint.getOrDefault("f2", " "),
+                toPrint.getOrDefault("g2", " "), toPrint.getOrDefault("h2", " "), //
+                toPrint.getOrDefault("a1", " "), toPrint.getOrDefault("b1", " "), toPrint.getOrDefault("c1", " "),
+                toPrint.getOrDefault("d1", " "), toPrint.getOrDefault("e1", " "), toPrint.getOrDefault("f1", " "),
+                toPrint.getOrDefault("g1", " "), toPrint.getOrDefault("h1", " "));
         return board;
     }
+
     public String toString() {
-        return String.format("Players: %s (white), %s (black) %s", player1.getName(), player2.getName(), "\n" + this.getMoves());
+        return String.format("Players: %s (white), %s (black) %s", player1.getName(), player2.getName(),
+                "\n" + this.getMoves());
     }
 
     public static void main(String args[]) {
@@ -126,6 +149,10 @@ public class ChessGame {
         System.out.println(game1.toString());
         System.out.println(game1.getBoard());
         System.out.println(game1.getBlackPlayer().getPiecePositions());
-        System.out.println(game1.toString()); 
+        System.out.println(game1.toString());
+        game1.move("dxe5");
+        System.out.println(game1.getBoard());
+        System.out.println(game1.getBlackPlayer().getPiecePositions()); // black piece needs to be removed from the
+                                                                        // player when captured
     }
 }

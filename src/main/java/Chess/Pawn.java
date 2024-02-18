@@ -93,13 +93,12 @@ public class Pawn implements ChessPiece {
         return this.validPositionsTo;
     }
 
-    private boolean isOccupiedToPosition(String toPosition) {
+    private boolean isOccupiedToPosition(String toPosition, boolean capturing) {
         for (String position : this.getOwner().getOpponent().getPiecePositions()) {
-            if (position.substring(position.length() - 2) == toPosition) {
+            if (position.substring(position.length() - 2).equals(toPosition)) {
                 // if a piece is at destination position, then occupied
                 return true;
-            } else {
-
+            } else if (!capturing) {
                 if (isWhite) {
                     if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
                             && position.charAt(position.length() - 1)
@@ -131,17 +130,26 @@ public class Pawn implements ChessPiece {
             }
         }
         if (Character.isLowerCase(move.charAt(0))) {
-            for (String validPosition : validPositionsTo) {
-                if (!capturing) {
-                    if (move.substring(move.length() - 2).equals(validPosition)) {
-                        return !isOccupiedToPosition(move.substring(move.length() - 2));
+            if (capturing) {
+                for (String validPosition : validPositionsTo) {
+                    if (this.getPosition().charAt(0) == move.charAt(move.length() - 4)) { // piece doing the capturing
+                                                                                          // must be specified (f.e.
+                                                                                          // dxe5)
+                        if (move.substring(move.length() - 2).equals(validPosition)) {
+                            return isOccupiedToPosition(move.substring(move.length() - 2), capturing);
+                        }
+                    } else {
+                        return false;
                     }
-                } else {
+                }
+            } else {
+                for (String validPosition : validPositionsTo) {
                     if (move.substring(move.length() - 2).equals(validPosition)) {
-                        return isOccupiedToPosition(move.substring(move.length() - 2));
+                        return !isOccupiedToPosition(move.substring(move.length() - 2), capturing);
                     }
                 }
             }
+
             return false;
 
         } else {
@@ -152,6 +160,11 @@ public class Pawn implements ChessPiece {
     public void setPosition(String move) {
         if (isValidPosition(move)) {
             this.position = move.substring(move.length() - 2);
+            for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) {
+                if (piece.getPosition() == this.position) { // when it captures
+
+                }
+            }
             firstMove = false;
             validPositionsTo.clear();
             validPositionsTo = generateValidPositionsTo(this.position);
