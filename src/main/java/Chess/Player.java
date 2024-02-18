@@ -85,6 +85,9 @@ public class Player {
             pieces.add(new King(String.format("%c%c", 'd', '8' )));
             pieces.add(new Queen(String.format("%c%c", 'e', '8' )));
         }
+        for (ChessPiece piece : pieces) {
+            piece.setOwner(this);
+        }
     }
     public void setName(String name) {
         this.name = name;
