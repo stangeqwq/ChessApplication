@@ -66,7 +66,8 @@ public class ChessGame {
     }
 
     public String getBoard() {
-        HashMap<String, String> toPrint = new HashMap<>();
+        HashMap<String, String> toPrint = new HashMap<>(); // HASHMAP SER SA DEILIG UT HER AAAAA
+
         for (ChessPiece piece : player1.getPieces()) {
             if (piece.getInitial() == null) {
                 toPrint.put(piece.getPosition(), "P");
@@ -201,7 +202,22 @@ public class ChessGame {
         System.out.println(game2.toString());
         game2.move("Nc6");
         System.out.println(game2.getBoard());
-        game2.move("Nd2");
+        // game2.move("Nd2"); // should get error capturing own piece ERROR AS EXPECTED
+        game2.move("Nc3");
         System.out.println(game2.getBoard());
+        game2.move("f5");
+        System.out.println(game2.getBoard());
+        game2.move("Ne4");
+        System.out.println(game2.getBoard());
+        game2.move("f4");
+        System.out.println(game2.getBoard());
+        game2.move("Nc5");
+        System.out.println(game2.getBoard());
+        game2.move("f3");
+        System.out.println(game2.getBoard());
+        // game2.move("Nxd7"); // error as expected knight not specified
+        game2.move("Ncxd7");
+        System.out.println(game2.getBoard());
+
     }
 }

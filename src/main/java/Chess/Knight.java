@@ -33,7 +33,7 @@ public class Knight implements ChessPiece {
 
     private boolean inValidPositionsTo(String toPosition) {
         for (String position : this.getValidPositionsTo()) {
-            if (position.equals(toPosition)) {
+            if (toPosition.equals(position.substring(position.length() - 2))) {
                 return true;
             }
         }
@@ -50,6 +50,14 @@ public class Knight implements ChessPiece {
                 boolean capturing = false;
                 if (move.length() >= 4 && move.charAt(move.length() - 3) == 'x') { // f.e. Nxe4, or Ndxe4
                     capturing = true;
+                    if (move.length() >= 5) {
+                        if (move.charAt(move.length() - 4) == this.getPosition().charAt(0)
+                                || move.charAt(move.length() - 3) == this.getPosition().charAt(1)) {
+
+                        } else {
+                            return false;
+                        }
+                    }
                 } else { // not capturing but specified which knight f.e. Nde4 or N1e4
                     if (move.length() >= 4) {
                         if (move.charAt(move.length() - 3) == this.getPosition().charAt(0)
@@ -62,13 +70,14 @@ public class Knight implements ChessPiece {
                 }
                 if (capturing) {
                     for (String position : this.getOwner().getOpponent().getPiecePositions()) {
-                        if (position.equals(toPosition) && inValidPositionsTo(toPosition)) {
+                        if (position.equals(toPosition) && inValidPositionsTo(toPosition)
+                                && !isOwnPieceInPosition(toPosition)) {
                             return true;
                         }
                     }
                     return false; // if you specify x, you must actually occupy an opponent piece position
                 } else {
-                    return inValidPositionsTo(toPosition);
+                    return inValidPositionsTo(toPosition) && !isOwnPieceInPosition(toPosition);
                 }
             } else { // not the right initial
                 return false;
@@ -116,6 +125,15 @@ public class Knight implements ChessPiece {
         }
         return validPositionsTo;
 
+    }
+
+    public boolean isOwnPieceInPosition(String toPosition) {
+        for (String position : this.getOwner().getPiecePositions()) {
+            if (toPosition.equals(position.substring(position.length() - 2))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setPosition(String move) {
