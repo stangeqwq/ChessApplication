@@ -97,6 +97,9 @@ public class Pawn implements ChessPiece {
         for (String position : this.getOwner().getOpponent().getPiecePositions()) {
             if (position.substring(position.length() - 2) == toPosition) {
                 // if a piece is at destination position, then occupied
+                return true;
+            } else {
+
                 if (isWhite) {
                     if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
                             && position.charAt(position.length() - 1)
@@ -115,8 +118,6 @@ public class Pawn implements ChessPiece {
                         return true;
                     }
                 }
-
-                return true;
             }
         }
         return false;
@@ -124,57 +125,25 @@ public class Pawn implements ChessPiece {
 
     public boolean isValidPosition(String move) {
         Boolean capturing = false;
-        if (move.charAt(move.length() - 3) == 'x') {
-            capturing = true;
+        if (move.length() >= 4) {
+            if (move.charAt(move.length() - 3) == 'x') {
+                capturing = true;
+            }
         }
         if (Character.isLowerCase(move.charAt(0))) {
             for (String validPosition : validPositionsTo) {
                 if (!capturing) {
-                    if (move.substring(move.length() - 2) == validPosition) {
+                    if (move.substring(move.length() - 2).equals(validPosition)) {
                         return !isOccupiedToPosition(move.substring(move.length() - 2));
+                    }
+                } else {
+                    if (move.substring(move.length() - 2).equals(validPosition)) {
+                        return isOccupiedToPosition(move.substring(move.length() - 2));
                     }
                 }
             }
+            return false;
 
-            // it is a pawn
-            // check first move (allow double move in columns)
-            if (isWhite) {
-                if (firstMove) {
-                    if ((move.charAt(move.length() - 1) - this.position.charAt(1) == 2
-                            || move.charAt(move.length() - 1) - this.position.charAt(1) == 1)
-                            && (move.charAt(move.length() - 2) == this.position.charAt(0))) { // "e2 -> e4"
-                        return !isOccupiedToPosition(move.substring(move.length() - 2));
-                    } else {
-                        return false;
-                    }
-                    // the pawn can move one row increase with column 1 increase/decrease (capturing
-                    // a piece)
-                } else { // not first move
-                    if (move.charAt(move.length() - 1) - this.position.charAt(1) == 1
-                            && move.charAt(move.length() - 2) == this.position.charAt(0)) { // "e2 -> e4"
-                        return !isOccupiedToPosition(move);
-                    } else {
-                        return false;
-                    }
-                }
-            } else { // it is a black pawn so going downwards
-                if (firstMove) {
-                    if ((move.charAt(move.length() - 1) - this.position.charAt(1) == -2
-                            || move.charAt(move.length() - 1) - this.position.charAt(1) == -1)
-                            && move.charAt(move.length() - 2) == this.position.charAt(0)) { // "e2 -> e4"
-                        return !isOccupiedToPosition(move.substring(move.length() - 2));
-                    } else {
-                        return false;
-                    }
-                } else { // not first move
-                    if (move.charAt(move.length() - 1) - this.position.charAt(1) == -1
-                            && move.charAt(move.length() - 2) == this.position.charAt(0)) { // "e2 -> e4"
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            }
         } else {
             return false; // not a pawn
         }
@@ -200,5 +169,6 @@ public class Pawn implements ChessPiece {
     public static void main(String args[]) {
         Pawn pawn1 = new Pawn("e2", true);
         System.out.println(pawn1.getValidPositionsTo());
+
     }
 }
