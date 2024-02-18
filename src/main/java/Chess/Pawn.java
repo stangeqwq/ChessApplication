@@ -38,34 +38,34 @@ public class Pawn implements ChessPiece {
         if (isWhite) {
             if (firstMove) {
                 // add 1/2 row increase, when row in validrows
-                if (row + 1 < '8') {
+                if (row + 1 <= '8') {
                     validPositionsTo.add(Character.toString(column) + Character.toString((char) (row + 1)));
                 }
-                if (row + 2 < '8') {
+                if (row + 2 <= '8') {
                     validPositionsTo.add(Character.toString(column) + Character.toString((char) (row + 2)));
                 }
                 // capturing pieces
-                if (row + 1 < '8' && column + 1 <= 'h') {
+                if (row + 1 <= '8' && column + 1 <= 'h') {
                     validPositionsTo
                             .add(Character.toString((char) (column + 1)) + Character.toString((char) (row + 1)));
                 }
 
-                if (row + 1 < '8' && column - 1 >= 'a') {
+                if (row + 1 <= '8' && column - 1 >= 'a') {
                     validPositionsTo
                             .add(Character.toString((char) (column - 1)) + Character.toString((char) (row + 1)));
                 }
 
             } else { // not first move
                 // add 1 row increase, when row in valid rows
-                if (row + 1 < '8') {
+                if (row + 1 <= '8') {
                     validPositionsTo.add(Character.toString(column) + Character.toString((char) (row + 1)));
                 }
-                if (row + 1 < '8' && column + 1 <= 'h') {
+                if (row + 1 <= '8' && column + 1 <= 'h') {
                     validPositionsTo
                             .add(Character.toString((char) (column + 1)) + Character.toString((char) (row + 1)));
                 }
 
-                if (row + 1 < '8' && column - 1 >= 'a') {
+                if (row + 1 <= '8' && column - 1 >= 'a') {
                     validPositionsTo
                             .add(Character.toString((char) (column - 1)) + Character.toString((char) (row + 1)));
                 }
@@ -79,11 +79,31 @@ public class Pawn implements ChessPiece {
                 if (row - 2 >= '1') {
                     validPositionsTo.add(Character.toString(column) + Character.toString((char) (row - 2)));
                 }
+                // capturing pieces
+                if (row - 1 >= '1' && column + 1 <= 'h') {
+                    validPositionsTo
+                            .add(Character.toString((char) (column + 1)) + Character.toString((char) (row - 1)));
+                }
+
+                if (row - 1 >= '1' && column - 1 >= 'a') {
+                    validPositionsTo
+                            .add(Character.toString((char) (column - 1)) + Character.toString((char) (row - 1)));
+                }
 
             } else { // not first move
                 // add 1 row increase, when row in valid rows
                 if (row - 1 >= '1') {
                     validPositionsTo.add(Character.toString(column) + Character.toString((char) (row - 1)));
+                }
+                // capturing pieces
+                if (row - 1 >= '1' && column + 1 <= 'h') {
+                    validPositionsTo
+                            .add(Character.toString((char) (column + 1)) + Character.toString((char) (row - 1)));
+                }
+
+                if (row - 1 >= '1' && column - 1 >= 'a') {
+                    validPositionsTo
+                            .add(Character.toString((char) (column - 1)) + Character.toString((char) (row - 1)));
                 }
             }
         }
@@ -183,7 +203,7 @@ public class Pawn implements ChessPiece {
         Scanner scan = new Scanner(System.in);
         System.out.println("Convert Pawn to (R, N, B, Q):");
         String pieceType = scan.nextLine();
-        if (pieceType == "R" || pieceType == "N" || pieceType == "B" || pieceType == "Q") {
+        if (pieceType.equals("R") || pieceType.equals("N") || pieceType.equals("B") || pieceType.equals("Q")) {
             this.getOwner().removePieceAtPosition(this.position);
             this.getOwner().addPiece(this.position, pieceType.charAt(0));
         } else {

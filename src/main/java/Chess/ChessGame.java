@@ -174,5 +174,19 @@ public class ChessGame {
         System.out.println(game1.getBlackPlayer().getPiecePositions()); // black piece needs to be removed from the
         // player when captured
         System.out.println(game1.toString());
+        game1.move("f6");
+        System.out.println(game1.getBoard());
+        game1.move("e6");
+        System.out.println(game1.getBoard());
+        game1.move("f5");
+        System.out.println(game1.getBoard());
+        game1.move("e7");
+        System.out.println(game1.getBoard());
+        game1.move("fxg4");
+        System.out.println(game1.getBoard());
+        // PAWN TRANSFORMS TO ANOTHER CLASS AT THAT POSITION (remove and add class at
+        // that position) (to transform you have to remove yourself and add)
+        game1.move("exf8");
+        System.out.println(game1.getBoard());
     }
 }
