@@ -130,5 +130,9 @@ public class Player {
         System.out.println(game1.getWhitePlayer().getPiecePositions());
         System.out.println(game1.getBlackPlayer().getPiecePositions());
         System.out.println(game1.getMoves());
+        game1.move("d4");
+        System.out.println(game1.getWhitePlayer().getPiecePositions());
+        System.out.println(game1.getBlackPlayer().getPiecePositions());
+        System.out.println(game1.getMoves());
     }
 }
