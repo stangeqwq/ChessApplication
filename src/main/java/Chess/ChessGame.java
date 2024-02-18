@@ -80,31 +80,31 @@ public class ChessGame {
         
         String board = String.format("A     B     C     D     E     F     G     H\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "8 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 8\n" + //
+                        "8 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 8\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "7 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 7\n" + //
+                        "7 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 7\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "6 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 6\n" + //
+                        "6 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 6\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "5 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 5\n" + //
+                        "5 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 5\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "4 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 4\n" + //
+                        "4 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 4\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "3 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 3\n" + //
+                        "3 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 3\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "2 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 2\n" + //
+                        "2 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 2\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
-                        "1 |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  |  %c  | 1\n" + //
+                        "1 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 1\n" + //
                         "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
                         "     A     B     C     D     E     F     G     H", //
-                        toPrint.getOrDefault("a8", " "), toPrint.getOrDefault("", " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
-                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
-                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
-                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
-                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
-                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
-                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), //
-                        toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "), toPrint.getOrDefault(, " "));
+                        toPrint.getOrDefault("a8", " "), toPrint.getOrDefault("b8", " "), toPrint.getOrDefault("c8", " "), toPrint.getOrDefault("d8", " "), toPrint.getOrDefault("e8", " "), toPrint.getOrDefault("f8", " "), toPrint.getOrDefault("g8", " "), toPrint.getOrDefault("h8", " "), //
+                        toPrint.getOrDefault("a7", " "), toPrint.getOrDefault("b7", " "), toPrint.getOrDefault("c7", " "), toPrint.getOrDefault("d7", " "), toPrint.getOrDefault("e7", " "), toPrint.getOrDefault("f7", " "), toPrint.getOrDefault("g7", " "), toPrint.getOrDefault("h7", " "), //
+                        toPrint.getOrDefault("a6", " "), toPrint.getOrDefault("b6", " "), toPrint.getOrDefault("c6", " "), toPrint.getOrDefault("d6", " "), toPrint.getOrDefault("e6", " "), toPrint.getOrDefault("f6", " "), toPrint.getOrDefault("g6", " "), toPrint.getOrDefault("h6", " "), //
+                        toPrint.getOrDefault("a5", " "), toPrint.getOrDefault("b5", " "), toPrint.getOrDefault("c5", " "), toPrint.getOrDefault("d5", " "), toPrint.getOrDefault("e5", " "), toPrint.getOrDefault("f5", " "), toPrint.getOrDefault("g5", " "), toPrint.getOrDefault("h5", " "), //
+                        toPrint.getOrDefault("a4", " "), toPrint.getOrDefault("b4", " "), toPrint.getOrDefault("c4", " "), toPrint.getOrDefault("d4", " "), toPrint.getOrDefault("e4", " "), toPrint.getOrDefault("f4", " "), toPrint.getOrDefault("g4", " "), toPrint.getOrDefault("h4", " "), //
+                        toPrint.getOrDefault("a3", " "), toPrint.getOrDefault("b3", " "), toPrint.getOrDefault("c3", " "), toPrint.getOrDefault("d3", " "), toPrint.getOrDefault("e3", " "), toPrint.getOrDefault("f3", " "), toPrint.getOrDefault("g3", " "), toPrint.getOrDefault("h3", " "), //
+                        toPrint.getOrDefault("a2", " "), toPrint.getOrDefault("b2", " "), toPrint.getOrDefault("c2", " "), toPrint.getOrDefault("d2", " "), toPrint.getOrDefault("e2", " "), toPrint.getOrDefault("f2", " "), toPrint.getOrDefault("g2", " "), toPrint.getOrDefault("h2", " "), //
+                        toPrint.getOrDefault("a1", " "), toPrint.getOrDefault("b1", " "), toPrint.getOrDefault("c1", " "), toPrint.getOrDefault("d1", " "), toPrint.getOrDefault("e1", " "), toPrint.getOrDefault("f1", " "), toPrint.getOrDefault("g1", " "), toPrint.getOrDefault("h1", " "));
         return board;
     }
     public String toString() {
@@ -114,11 +114,14 @@ public class ChessGame {
     public static void main(String args[]) {
         ChessGame game1 = new ChessGame("Alice", "Bob");
         game1.move("e4");
+        System.out.println(game1.getBoard());
+        System.out.println(game1.getWhitePlayer().getPiecePositions());
         game1.move("e5");
-        System.out.println(game1.toString());
+        System.out.println(game1.getBoard());
         game1.move("d4");
         System.out.println(game1.toString());
         System.out.println(game1.getBoard());
+        System.out.println(game1.getWhitePlayer().getPiecePositions());
         
     }
 }
