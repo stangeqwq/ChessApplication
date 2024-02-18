@@ -3,6 +3,7 @@ package Chess;
 public class Bishop implements ChessPiece {
     private String position = "a1";
     private Character initial = 'B';
+    private Player owner = null;
 
     private Character[] validColumns = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     private Character[] validRows = {'1', '2', '3', '4', '5', '6', '7', '8'};
@@ -10,7 +11,14 @@ public class Bishop implements ChessPiece {
     public Bishop(String position) {
         this.position = position;
     }
-    
+    public Player getOwner() {
+        return owner;
+    }
+    public void setOwner(Player owner) {
+        if (this.owner == null) {
+            this.owner = owner;
+        }
+    }
     public boolean isValidPosition(String position){ // takes a position without an initial
         if (Character.isLowerCase(position.charAt(0))) {
             return false; //it is a pawn
