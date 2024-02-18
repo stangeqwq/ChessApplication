@@ -93,58 +93,16 @@ public class Pawn implements ChessPiece {
         return this.validPositionsTo;
     }
 
-    private boolean isOccupiedToPosition(String toPosition, boolean capturing) {
-        for (String position : this.getOwner().getOpponent().getPiecePositions()) {
-            if (position.substring(position.length() - 2).equals(toPosition)) {
-                // if a piece is at destination position, then occupied
-                return true;
-            } else if (!capturing) {
-                if (isWhite) {
-                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
-                            && position.charAt(position.length() - 1)
-                                    - toPosition.charAt(toPosition.length() - 1) == -1) {
-                        // f.e. a piece is infront (d2 -> d4) but there is someone at (d3 or d4), so
-                        // occupied
-                        // when moving there, there is a piece (same column [length() - 2]) in front)
-                        return true;
-                    }
-                } else { // for black pawns
-                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
-                            && position.charAt(position.length() - 1)
-                                    - toPosition.charAt(toPosition.length() - 1) == 1) {
-                        // f.e. a piece is infront (d7 -> d5) but there is someone at (d6), so occupied
-                        // when moving there, there is a piece (same column [length() - 2]) in front)
-                        return true;
-                    }
-                }
+    private boolean isOccupiedToPosition(String toPosition) {
+        for (String position : this.getOwner().getOpponent().getPiecePositions()) { // check if enemy pieces on the path
+            if (position.equals(toPosition)) {
+                return true; // a piece in destination
             }
+
         }
-        for (ChessPiece piece : this.getOwner().getPieces()) { // make sure own pieces don't block the position
-            if (piece.getPosition().substring(position.length() - 2).equals(toPosition) && piece != this) {
-                // if a piece is at destination position, then occupied
-                return true;
-            } else if (!capturing) {
-                if (isWhite) {
-                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
-                            && position.charAt(position.length() - 1)
-                                    - toPosition.charAt(toPosition.length() - 1) == -1) {
-                        // f.e. a piece is infront (d2 -> d4) but there is someone at (d3 or d4), so
-                        // occupied
-                        // when moving there, there is a piece (same column [length() - 2]) in front)
-                        return true;
-                    }
-                } else { // for black pawns
-                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
-                            && position.charAt(position.length() - 1)
-                                    - toPosition.charAt(toPosition.length() - 1) == 1) {
-                        // f.e. a piece is infront (d7 -> d5) but there is someone at (d6), so occupied
-                        // when moving there, there is a piece (same column [length() - 2]) in front)
-                        return true;
-                    }
-                }
-            } else {
-                // dont have to worry about this the pawn only has one square so no need to
-                // check "ToPosition" travel
+        for (String position : this.getOwner().getPiecePositions()) { // check if own pieces on the path
+            if (position.equals(toPosition)) {
+                return true; // a piece in destination
             }
         }
         return false;
@@ -152,6 +110,8 @@ public class Pawn implements ChessPiece {
 
     public boolean isValidPosition(String move) {
         Boolean capturing = false;
+        String toPosition = move.substring(move.length() - 2);
+        Character thisPawnColumn = this.getPosition().charAt(0);
         if (move.length() >= 4) {
             if (move.charAt(move.length() - 3) == 'x') {
                 capturing = true;
@@ -160,11 +120,15 @@ public class Pawn implements ChessPiece {
         if (Character.isLowerCase(move.charAt(0))) {
             if (capturing) {
                 for (String validPosition : validPositionsTo) {
-                    if (this.getPosition().charAt(0) == move.charAt(move.length() - 4)) { // piece doing the capturing
-                                                                                          // must be specified (f.e.
-                                                                                          // dxe5)
-                        if (move.substring(move.length() - 2).equals(validPosition)) {
-                            return isOccupiedToPosition(move.substring(move.length() - 2), capturing);
+                    if (thisPawnColumn == move.charAt(move.length() - 4)) { // the same pawn piece specified in the
+                                                                            // move, is this pawn
+                        if (toPosition.equals(validPosition)) {
+                            boolean isOccupiedToPosition = isOccupiedToPosition(toPosition);
+                            if (!isOccupiedToPosition && isEnemyPieceAt(toPosition)) {
+                                return true;
+                            } else {
+                                return false;
+                            }
                         }
                     } else {
                         return false;
@@ -172,8 +136,13 @@ public class Pawn implements ChessPiece {
                 }
             } else {
                 for (String validPosition : validPositionsTo) {
-                    if (move.substring(move.length() - 2).equals(validPosition)) {
-                        return !isOccupiedToPosition(move.substring(move.length() - 2), capturing);
+                    if (toPosition.equals(validPosition)) {
+                        boolean isOccupiedToPosition = isOccupiedToPosition(toPosition);
+                        if (isOccupiedToPosition) {
+                            return false;
+                        } else {
+                            return true;
+                        }
                     }
                 }
                 return false;
