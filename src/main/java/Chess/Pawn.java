@@ -154,6 +154,9 @@ public class Pawn implements ChessPiece {
     }
 
     public boolean isValidPosition(String move) {
+        if (!Character.isLowerCase(move.charAt(0))) {
+            return false; // first check that the move is actually specifying pawn
+        }
         Boolean capturing = false;
         if (move.length() >= 4) {
             if (move.charAt(move.length() - 3) == 'x') {

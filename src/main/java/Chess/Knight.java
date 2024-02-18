@@ -28,38 +28,39 @@ public class Knight implements ChessPiece {
     }
 
     public boolean isValidPosition(String move) {
-        String toPosition = move.substring(move.length() - 2);
-        boolean capturing = false;
-        if (move.length() >= 4 && move.charAt(move.length() - 3) == 'x') { // f.e. Nxe4, or Ndxe4
-            capturing = true;
-        } else { // not capturing but specified which knight f.e. Nde4 or N1e4
-            if (move.length() >= 4) {
-                if (move.charAt(move.length() - 3) == this.getPosition().charAt(0)
-                        || move.charAt(move.length() - 3) == this.getPosition().charAt(1)) {
-
-                } else {
-                    return false;
-                }
-            }
-        }
-        if (capturing) {
-            for (String position : this.getOwner().getOpponent().getPiecePositions()) {
-                if (position.equals(toPosition)) {
-                    return true;
-                }
-            }
-            return false; // if you specify x, you must actual occupy an opponent piece position
-        }
         if (Character.isLowerCase(move.charAt(0))) {
             return false; // it is a pawn
         } else {
             if (move.charAt(0) == this.getInitial()) {
+                String toPosition = move.substring(move.length() - 2);
+                boolean capturing = false;
+                if (move.length() >= 4 && move.charAt(move.length() - 3) == 'x') { // f.e. Nxe4, or Ndxe4
+                    capturing = true;
+                } else { // not capturing but specified which knight f.e. Nde4 or N1e4
+                    if (move.length() >= 4) {
+                        if (move.charAt(move.length() - 3) == this.getPosition().charAt(0)
+                                || move.charAt(move.length() - 3) == this.getPosition().charAt(1)) {
+
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+                if (capturing) {
+                    for (String position : this.getOwner().getOpponent().getPiecePositions()) {
+                        if (position.equals(toPosition)) {
+                            return true;
+                        }
+                    }
+                    return false; // if you specify x, you must actually occupy an opponent piece position
+                }
+
                 for (String position : validPositionsTo) {
                     if (toPosition.equals(position)) {
                         return true;
                     }
                 }
-            } else {
+            } else { // not the right initial
                 return false;
             }
 

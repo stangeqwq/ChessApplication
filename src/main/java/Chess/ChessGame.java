@@ -185,8 +185,8 @@ public class ChessGame {
         System.out.println(game1.getBoard());
         // PAWN TRANSFORMS TO ANOTHER CLASS AT THAT POSITION (remove and add class at
         // that position) (to transform you have to remove yourself and add)
-        game1.move("exf8");
-        System.out.println(game1.getBoard());
+        // game1.move("exf8"); // commented out to speed up debugging
+        // System.out.println(game1.getBoard());
 
         // TESTING OUT THE KNIGHT CLASSES
         ChessGame game2 = new ChessGame("Alice", "Bob");
