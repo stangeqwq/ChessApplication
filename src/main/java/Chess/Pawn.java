@@ -119,6 +119,34 @@ public class Pawn implements ChessPiece {
                 }
             }
         }
+        for (ChessPiece piece : this.getOwner().getPieces()) { // make sure own pieces don't block the position
+            if (piece.getPosition().substring(position.length() - 2).equals(toPosition) && piece != this) {
+                // if a piece is at destination position, then occupied
+                return true;
+            } else if (!capturing) {
+                if (isWhite) {
+                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
+                            && position.charAt(position.length() - 1)
+                                    - toPosition.charAt(toPosition.length() - 1) == -1) {
+                        // f.e. a piece is infront (d2 -> d4) but there is someone at (d3 or d4), so
+                        // occupied
+                        // when moving there, there is a piece (same column [length() - 2]) in front)
+                        return true;
+                    }
+                } else { // for black pawns
+                    if (position.charAt(position.length() - 2) == toPosition.charAt(toPosition.length() - 2)
+                            && position.charAt(position.length() - 1)
+                                    - toPosition.charAt(toPosition.length() - 1) == 1) {
+                        // f.e. a piece is infront (d7 -> d5) but there is someone at (d6), so occupied
+                        // when moving there, there is a piece (same column [length() - 2]) in front)
+                        return true;
+                    }
+                }
+            } else {
+                // dont have to worry about this the pawn only has one square so no need to
+                // check "ToPosition" travel
+            }
+        }
         return false;
     }
 
@@ -148,9 +176,10 @@ public class Pawn implements ChessPiece {
                         return !isOccupiedToPosition(move.substring(move.length() - 2), capturing);
                     }
                 }
+                return false;
             }
 
-            return false;
+            return false; // valid position not in validpositionTo go
 
         } else {
             return false; // not a pawn
@@ -160,11 +189,7 @@ public class Pawn implements ChessPiece {
     public void setPosition(String move) {
         if (isValidPosition(move)) {
             this.position = move.substring(move.length() - 2);
-            for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) {
-                if (piece.getPosition() == this.position) { // when it captures
-
-                }
-            }
+            this.getOwner().getOpponent().removePieceAtPosition(this.position);
             firstMove = false;
             validPositionsTo.clear();
             validPositionsTo = generateValidPositionsTo(this.position);

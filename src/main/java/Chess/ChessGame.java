@@ -154,5 +154,12 @@ public class ChessGame {
         System.out.println(game1.getBoard());
         System.out.println(game1.getBlackPlayer().getPiecePositions()); // black piece needs to be removed from the
                                                                         // player when captured
+        game1.move("c5");
+        game1.move("f4");
+        System.out.println(game1.getBoard());
+        game1.move("c4");
+
+        game1.move("fxe5"); // testing when own pieces capture own
+        System.out.println(game1.getBoard());
     }
 }

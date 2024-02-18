@@ -66,8 +66,13 @@ public class Player {
     }
 
     public void removePieceAtPosition(String position) {
+        int index = 0;
         for (ChessPiece piece : pieces) {
-
+            if (piece.getPosition().equals(position)) {
+                pieces.remove(index);
+                return;
+            }
+            index += 1;
         }
     }
 
