@@ -219,5 +219,6 @@ public class ChessGame {
         game2.move("Ncxd7");
         System.out.println(game2.getBoard());
 
+        // TESTING OUT THE BISHOP CLASSES
     }
 }
