@@ -20,46 +20,34 @@ public class ChessGame {
         if (!finished) {
             if (whiteTurn) {
                 player1.move(move);
-
-                // check if king is still in check
-                if (this.getWhitePlayer().getKing().isInAttack(this.getWhitePlayer().getKing().getPosition())
-                        && move.charAt(0) != 'K') {
+                // check if king is still in check / left in check
+                if (this.getWhitePlayer().getKing().isInAttack(this.getWhitePlayer().getKing().getPosition())) {
                     System.out.println("The white king is in check. You must protect the king");
                     throw new IllegalArgumentException();
                 }
                 moves.add(move);
                 whiteTurn = false;
-                // check if king is checkmated (under attack + no valid positions to) after that
-                // move
-                if (this.getBlackPlayer().getKing()
-                        .getValidPositionsTo(this.getBlackPlayer().getKing().getPosition()) == null
-                        && this.getBlackPlayer().getKing().isInAttack(this.getBlackPlayer().getKing().getPosition())) {
-                    System.out.println(String.format("You checkmated the black king! Congrats %s!",
-                            this.getWhitePlayer().getName()));
-                    finished = true;
-                    moves.add()
-                }
+                // check if king is checkmated (under attack + no valid positions to for all
+                // pieces) after that move
+
             } else {
 
                 player2.move(move);
 
-                // check if king is still in check
-                if (this.getBlackPlayer().getKing().isInAttack(this.getBlackPlayer().getKing().getPosition())
-                        && move.charAt(0) != 'K') {
+                // check if king is still in check / left in check
+                if (this.getBlackPlayer().getKing().isInAttack(this.getBlackPlayer().getKing().getPosition())) {
                     System.out.println("The black king is in check. You must protect the king");
                     throw new IllegalArgumentException();
                 }
-                moves.add(move);
+                if (this.getWhitePlayer().getKing().isInAttack(this.getWhitePlayer().getKing().getPosition())) {
+                    moves.add(move + Character.toString('+')); // add check sign to the move if caused opponent king to
+                                                               // be under attack
+                } else {
+                    moves.add(move);
+                }
+
                 whiteTurn = true;
                 // check if king is checkmated (under attack + no valid positions to) after that
-                // move
-                if (this.getWhitePlayer().getKing()
-                        .getValidPositionsTo(this.getWhitePlayer().getKing().getPosition()) == null
-                        && this.getWhitePlayer().getKing().isInAttack(this.getWhitePlayer().getKing().getPosition())) {
-                    System.out.println(String.format("You checkmated the black king! Congrats %s!",
-                            this.getWhitePlayer().getName()));
-                    finished = true;
-                }
             }
         } else {
             System.out.println("This game is finished!\n See move lists and board:");
