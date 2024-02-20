@@ -77,7 +77,6 @@ public class ChessGame {
             System.out.println(this.toString());
             System.out.println(this.getBoard());
         }
-
     }
 
     public Player getWhitePlayer() {
