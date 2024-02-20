@@ -246,5 +246,7 @@ public class ChessGame {
         System.out.println(game3.getBoard());
         game3.move("Bxc4");
         System.out.println(game3.getBoard());
+        // game3.move("Bd2"); // error as expected
+        System.out.println(game3.getBoard());
     }
 }
