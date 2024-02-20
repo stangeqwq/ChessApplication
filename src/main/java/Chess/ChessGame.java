@@ -25,15 +25,22 @@ public class ChessGame {
                     System.out.println("The white king is in check. You must protect the king");
                     throw new IllegalArgumentException();
                 }
-                if (this.getBlackPlayer().getKing().isInAttack(this.getBlackPlayer().getKing().getPosition())) {
+                if (this.getBlackPlayer().getKing().isInAttack(this.getBlackPlayer().getKing().getPosition())
+                        && !isCheckmated(this.getBlackPlayer().getKing())) {
                     moves.add(move + Character.toString('+')); // add check sign to the move if caused opponent king to
                                                                // be under attack
-                } else {
-                    moves.add(move);
+                } else if (isCheckmated(this.getBlackPlayer().getKing())) {
+                    moves.add(move + Character.toString('#'));
                 }
                 whiteTurn = false;
-                // check if king is checkmated (under attack + no valid positions to for all
+                // check if opponent king is checkmated (under attack + no valid positions to
+                // for all
                 // pieces) after that move
+                if (isCheckmated(this.getBlackPlayer().getKing())) {
+                    System.out.println(
+                            String.format("Congrats %s! You checkmated the king!", this.getWhitePlayer().getName()));
+                    finished = true;
+                }
 
             } else {
 
@@ -52,8 +59,14 @@ public class ChessGame {
                 }
 
                 whiteTurn = true;
-                // check if king is checkmated (under attack + no valid positions to + no other
+                // check if opponent king is checkmated (under attack + no valid positions to +
+                // no other
                 // position moves) after that
+                if (isCheckmated(this.getWhitePlayer().getKing())) {
+                    System.out.println(
+                            String.format("Congrats %s! You checkmated the king!", this.getBlackPlayer().getName()));
+                    finished = true;
+                }
             }
         } else {
             System.out.println("This game is finished!\n See move lists and board:");
@@ -98,6 +111,39 @@ public class ChessGame {
             }
         }
         return movelist;
+    }
+
+    private boolean isCheckmated(King king) {
+        List<ChessPiece> checkingPieces = king.getCheckingPieces();
+        if (king.isInAttack(king.getPosition())) { // check if king is in check
+            if (king.getValidPositionsTo(king.getPosition()).size() == 0) { // check if king has valid positions to go
+                                                                            // to /
+                // capture
+                if (checkingPieces.size() >= 2) {
+                    return true; // no chance to capture two checking pieces
+                } else {
+                    for (ChessPiece friendlyPiece : king.getOwner().getPieces()) { // check every friendly piece besides
+                                                                                   // king if they can capture the
+                                                                                   // checking piece
+                        if (friendlyPiece.getPosition() != king.getPosition()) {
+                            for (String attackingPosition : friendlyPiece.getAttackingPositions()) {
+                                if (attackingPosition == checkingPieces.get(0).getPosition()) { // can capture that one
+                                                                                                // checking piece
+                                    return false;
+
+                                }
+                            }
+
+                        }
+                    }
+                }
+            } else {
+                return false;
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String getBoard() {
@@ -365,6 +411,25 @@ public class ChessGame {
         game5.move("Qxf7"); // should get '+' sign YES CORRECT
         System.out.println(game5.getBoard());
         System.out.println(game5.toString());
-        game5.move("a6"); // ignore check ILLEGAL ARGUMENT EXPECTED (correct!!)
+        // game5.move("a6"); // ignore check ILLEGAL ARGUMENT EXPECTED (correct!!)
+
+        // CHECKING if checkmate works!
+        ChessGame game6 = new ChessGame("Howard", "Barry");
+        System.out.println(game6.getBoard());
+        game6.move("e4");
+        System.out.println(game6.getBoard());
+        game6.move("e5");
+        System.out.println(game6.getBoard());
+        game6.move("Qf3");
+        System.out.println(game6.getBoard());
+        game6.move("a5");
+        System.out.println(game6.getBoard());
+        game6.move("Bc4");
+        System.out.println(game6.getBoard());
+        game6.move("a4");
+        System.out.println(game6.getBoard());
+        game6.move("Qxf7");
+        System.out.println(game6.getBoard());
+        game6.move("a3");
     }
 }

@@ -91,6 +91,9 @@ public class Bishop implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else {
+                validPositionsTo.add(Character.toString('f') + toPosition);
+
             }
             currentPositionCheck = toPosition;
         }

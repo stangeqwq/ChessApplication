@@ -258,6 +258,23 @@ public class King implements ChessPiece {
         return this.position;
     }
 
+    public List<ChessPiece> getCheckingPieces() {
+        List<ChessPiece> checkingPieces = new ArrayList<ChessPiece>();
+        if (!this.isInAttack(this.getPosition())) {
+            return null;
+        } else {
+            for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) {
+                for (String attackedPosition : piece.getAttackingPositions()) {
+                    if (this.position.equals(attackedPosition.substring(attackedPosition.length() - 2))) {
+                        checkingPieces.add(piece);
+                    }
+                }
+            }
+            return checkingPieces;
+        }
+
+    }
+
     public List<String> getAttackingPositions() {
         List<String> attackingPositions = new ArrayList<String>(); // should be all possible moves since one square only
                                                                    // here we don't check for if it is in attack or not
