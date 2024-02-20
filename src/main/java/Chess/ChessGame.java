@@ -108,7 +108,7 @@ public class ChessGame {
                 toPrint.getOrDefault("a7", " "), toPrint.getOrDefault("b7", " "), toPrint.getOrDefault("c7", " "),
                 toPrint.getOrDefault("d7", " "), toPrint.getOrDefault("e7", " "), toPrint.getOrDefault("f7", " "),
                 toPrint.getOrDefault("g7", " "), toPrint.getOrDefault("h7", " "), //
-                toPrint.getOrDefault("a6", " "), toPrint.getOrDefault("b6", " "), toPrint.getOrDefault("c6", " "),
+                toPrint.getOrDefault("a6", " "), toPrint.getOrDefault("b6", " "), toPrint.getOrDefault("5", " "),
                 toPrint.getOrDefault("d6", " "), toPrint.getOrDefault("e6", " "), toPrint.getOrDefault("f6", " "),
                 toPrint.getOrDefault("g6", " "), toPrint.getOrDefault("h6", " "), //
                 toPrint.getOrDefault("a5", " "), toPrint.getOrDefault("b5", " "), toPrint.getOrDefault("c5", " "),
@@ -248,5 +248,55 @@ public class ChessGame {
         System.out.println(game3.getBoard());
         // game3.move("Bd2"); // error as expected
         System.out.println(game3.getBoard());
+
+        // TESTING OUT ROOK CLASSES AND QUEEN CLASSES (based from previous game as well)
+        ChessGame game4 = new ChessGame("Howard", "Barry");
+        System.out.println(game4.getBoard());
+        game4.move("e4");
+        System.out.println(game4.getBoard());
+        game4.move("e5");
+        System.out.println(game4.getBoard());
+        game4.move("Bb5");
+        System.out.println(game4.getBoard());
+        game4.move("c6");
+        System.out.println(game4.getBoard());
+        // game3.move("Bxa4"); //error as expected
+        game4.move("Bxc6");
+        System.out.println(game4.getBoard());
+        System.out.println(game4.getBoard());
+        System.out.println(game4.getBlackPlayer().getPiecePositions());
+        // game3.move("Bxe7"); // error as expected
+        game4.move("bxc6");
+        System.out.println(game4.getBoard());
+        game4.move("Nf3");
+        System.out.println(game4.getBoard());
+        game4.move("Ba6");
+        System.out.println(game4.getBoard());
+        game4.move("c4");
+        System.out.println(game4.getBoard());
+        game4.move("Bxc4");
+        System.out.println(game4.getBoard());
+        // game3.move("Bd2"); // error as expected
+        System.out.println(game4.getBoard());
+        // game4.move("Ra2"); // error as expected
+        game4.move("Rf1");
+        System.out.println(game4.getBoard());
+        // game4.move("f3"); //error as expected
+        System.out.println(game4.getBoard());
+        game4.move("c5");
+        System.out.println(game4.getBoard());
+        game4.move("Rg1");
+        System.out.println(game4.getBoard());
+        game4.move("d5");
+        System.out.println(game4.getBoard());
+        game4.move("g4");
+        System.out.println(game4.getBoard());
+        game4.move("d4");
+        System.out.println(game4.getBoard());
+        // game4.move("Rg4"); //error as expected
+        game4.move("Rg3");
+        System.out.println(game4.getBoard());
+        System.out.println(game4.toString());
+
     }
 }
