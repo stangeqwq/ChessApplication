@@ -55,6 +55,7 @@ public class King implements ChessPiece {
         // cross pattern and diagonal pattern (essentially bishop + rook class) without
         // range so no while loop
         List<String> validPositionsTo = new ArrayList<String>();
+        boolean firstFriendly = true; // used in checkmate for checking if a piece is protected
         // right
         String currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(0) < 'h') {
@@ -68,9 +69,13 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
         // left
+        firstFriendly = true;
         if (currentPositionCheck.charAt(0) > 'a'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -83,9 +88,13 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
         // up
+        firstFriendly = true;
         if (currentPositionCheck.charAt(1) < '8') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -97,9 +106,13 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
         // down
+        firstFriendly = true;
         if (currentPositionCheck.charAt(1) > '1') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -111,10 +124,14 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
 
         // up right
+        firstFriendly = true;
         if (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) < '8') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -127,9 +144,13 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
         // up left
+        firstFriendly = true;
         if (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) < '8') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -142,9 +163,13 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
         // down right
+        firstFriendly = true;
         if (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) > '1') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -157,9 +182,13 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
         // down left
+        firstFriendly = true;
         if (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) > '1') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -172,6 +201,9 @@ public class King implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
         }
         // now check for each validPositionsTo if a piece is attacking it/covers it in
@@ -180,7 +212,7 @@ public class King implements ChessPiece {
         // checkmate is if king is (in check+ will be coded) + no validPositionsTo
         List<String> finalValidPositionsTo = new ArrayList();
         for (String validPositionTo : validPositionsTo) {
-            if (isInAttack(validPositionTo)) {
+            if (isInAttack(validPositionTo) || validPositionTo.charAt(0) == 'f') { // take out positions to friendly
             } else {
                 finalValidPositionsTo.add(validPositionTo);
             }
@@ -231,7 +263,9 @@ public class King implements ChessPiece {
                      // interested
                 for (String validPositionTo : validPositionsTo) {
                     if (validPositionTo.substring(validPositionTo.length() - 2).equals(position)
-                            && validPositionTo.length() == 3) { // actually have to capture a piece when capturing
+                            && validPositionTo.length() == 3 && validPositionTo.charAt(0) == 'x') { // actually have to
+                                                                                                    // capture a piece
+                                                                                                    // when capturing
                         return true;
                     }
                 }
