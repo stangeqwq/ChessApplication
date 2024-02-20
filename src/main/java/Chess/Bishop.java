@@ -54,6 +54,7 @@ public class Bishop implements ChessPiece {
     public List<String> getValidPositionsTo(String position) {
         // diagonal pattern
         List<String> validPositionsTo = new ArrayList<String>();
+        boolean firstFriendly = false;
         // up right
         String currentPositionCheck = this.position;
         while (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) < '8'
@@ -73,6 +74,8 @@ public class Bishop implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else {
+                validPositionsTo.add(Character.toString('x') + toPosition); // add first friendly useful for checkmating
             }
             currentPositionCheck = toPosition;
         }
