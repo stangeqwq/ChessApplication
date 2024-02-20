@@ -154,4 +154,8 @@ public class Knight implements ChessPiece {
     public String getPosition() {
         return this.position;
     }
+
+    public List<String> getAttackingPositions() {
+        return getValidPositionsTo();
+    }
 }

@@ -305,5 +305,13 @@ public class ChessGame {
         System.out.println(game4.getBoard());
         System.out.println(game4.getWhitePlayer().getPiecePositions());
         System.out.println(game4.toString());
+        // game4.move("Ke3"); // error as expected more than range
+        game4.move("Ke2");
+        System.out.println(game4.getBoard());
+        game4.move("Kd8");
+        System.out.println(game4.getBoard());
+        // game4.move("Kxf2"); // can't capture own piece error as expected NICE
+        System.out.println(game4.getBoard());
+        System.out.println(game4.toString());
     }
 }

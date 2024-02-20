@@ -189,7 +189,27 @@ public class King implements ChessPiece {
             }
             currentPositionCheck = toPosition;
         }
+        // now check for each validPositionsTo if a piece is attacking it/covers it in
+        // their validPositionsTo (remove it)
+        // in such a case, that position can't be moved to
+        // checkmate is if king is (in check+ will be coded) + no validPositionsTo
+        for (String validPositionTo : validPositionsTo) {
+            if (isInAttack(validPositionTo)) {
+                validPositionsTo.remove(validPositionsTo.indexOf(validPositionTo));
+            }
+        }
         return validPositionsTo;
+    }
+
+    public boolean isInAttack(String positionTo) {
+        for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) {
+            for (String validPositionTo : piece.getAttackingPositions()) {
+                if (validPositionTo.equals(positionTo)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean isValidPosition(String move) { // takes a position without an initial
