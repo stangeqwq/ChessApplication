@@ -212,12 +212,12 @@ public class Queen implements ChessPiece {
         if (Character.isLowerCase(move.charAt(0))) {
             return false; // it is a pawn
         } else if (move.charAt(0) == this.getInitial()) {
-            if (move.length() >= 4) { // f.e. Rxe5 or Rdxe4 or Rde4
+            if (move.length() >= 4) { // f.e. Qxe5 or Qdxe4 or Qde4
                 if (move.charAt(move.length() - 3) == 'x') {
                     capturing = true;
                 } else if ((move.charAt(move.length() - 3) == this.getPosition().charAt(0))
                         || (move.charAt(move.length() - 3) == this.getPosition().charAt(1))) {
-                    // specified which rook piece so we check if this rook is correct (for both
+                    // specified which rook piece so we check if this Q is correct (for both
                     // row and column)
                     // do nothing we continue below
 
@@ -242,7 +242,7 @@ public class Queen implements ChessPiece {
                 }
 
             }
-        } else { // not same initial to rook
+        } else { // not same initial to queen
             return false;
         }
         return false;
