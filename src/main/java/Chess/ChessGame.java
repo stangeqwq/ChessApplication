@@ -454,6 +454,7 @@ public class ChessGame {
         game7.move("O-O");
         System.out.println(game7.getBoard());
         game7.move("O-O");
+        System.out.println(game7.getBoard());
 
     }
 }

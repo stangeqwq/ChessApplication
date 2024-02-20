@@ -153,26 +153,29 @@ public class Rook implements ChessPiece {
     public boolean rightCastling(String castling) {
         if (!this.getOwner().getKing().getHasmoved() && this.hasmoved == false
                 && !this.getOwner().getKing().isInAttack(this.getOwner().getKing().getPosition())) {
-            if ((castling == "0-0" || castling == "O-O") && this.getOwner().getColorIsWhite()) { // white castling
-                                                                                                 // kingside
+            if ((castling == "0-0" || castling == "O-O") && this.getOwner().getColorIsWhite()
+                    && this.getPosition().charAt(0) == 'h') { // white castling
+                // kingside
                 if (!isOccupied("f1") && !isOccupied("g1") && !this.getOwner().getKing().isInAttack("f1")
                         && !this.getOwner().getKing().isInAttack("g1")) {
                     return true;
                 } else {
                     return false;
                 }
-            } else if ((castling == "0-0-0" || castling == "O-O-O") && this.getOwner().getColorIsWhite()) { // white
-                                                                                                            // castling
-                                                                                                            // kingside
+            } else if ((castling == "0-0-0" || castling == "O-O-O") && this.getOwner().getColorIsWhite()
+                    && this.getPosition().charAt(0) == 'a') { // white
+                // castling
+                // kingside
                 if (!isOccupied("d1") && !isOccupied("c1") && !this.getOwner().getKing().isInAttack("d1")
                         && !this.getOwner().getKing().isInAttack("c1")) {
                     return true;
                 } else {
                     return false;
                 }
-            } else if ((castling == "0-0" || castling == "O-O") && !this.getOwner().getColorIsWhite()) { // black
-                                                                                                         // castling
-                                                                                                         // kingside
+            } else if ((castling == "0-0" || castling == "O-O") && !this.getOwner().getColorIsWhite()
+                    && this.getPosition().charAt(0) == 'h') { // black
+                // castling
+                // kingside
                 if (!isOccupied("f8") && !isOccupied("g8") && !this.getOwner().getKing().isInAttack("f8")
                         && !this.getOwner().getKing().isInAttack("g8")) {
                     return true;
@@ -180,9 +183,10 @@ public class Rook implements ChessPiece {
                     return false;
                 }
 
-            } else if ((castling == "0-0-0" || castling == "O-O-O") && !this.getOwner().getColorIsWhite()) { // black
-                                                                                                             // castling
-                                                                                                             // queenside
+            } else if ((castling == "0-0-0" || castling == "O-O-O") && !this.getOwner().getColorIsWhite()
+                    && this.getPosition().charAt(0) == 'a') { // black
+                // castling
+                // queenside
                 if (!isOccupied("c8") && !isOccupied("d8") && !this.getOwner().getKing().isInAttack("c8")
                         && !this.getOwner().getKing().isInAttack("d8")) {
                     return true;
