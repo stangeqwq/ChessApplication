@@ -435,7 +435,7 @@ public class ChessGame {
         game6.move("Qxf7");
         game6.move("a3");
 
-        // CHECKING if castling works both kingside for black and white and queenside
+        // CHECKING if castling works kingside for black and white
         // for black and white
         ChessGame game7 = new ChessGame("Troy", "Robert");
         System.out.println(game7.getBoard());
@@ -456,5 +456,34 @@ public class ChessGame {
         game7.move("O-O");
         System.out.println(game7.getBoard());
 
+        // CHECKING if castling works queenside for both black and white
+        ChessGame game8 = new ChessGame("Troy", "Robert");
+        System.out.println(game8.getBoard());
+        game8.move("d4");
+        System.out.println(game8.getBoard());
+        game8.move("d5");
+        System.out.println(game8.getBoard());
+        game8.move("Nc3");
+        System.out.println(game8.getBoard());
+        game8.move("Nc6");
+        System.out.println(game8.getBoard());
+        game8.move("Bd2");
+        System.out.println(game8.getBoard());
+        game8.move("Bd7");
+        System.out.println(game8.getBoard());
+        // game8.move("O-O"); // error as expected when blocked
+        game8.move("e3");
+        System.out.println(game8.getBoard());
+        // game8.move("O-O");
+        game8.move("e6");
+        System.out.println(game8.getBoard());
+        game8.move("Qg4");
+        System.out.println(game8.getBoard());
+        game8.move("Qg5");
+        System.out.println(game8.getBoard());
+        game8.move("O-O-O");
+        System.out.println(game8.getBoard());
+        game8.move("0-0-0");
+        System.out.println(game8.getBoard());
     }
 }

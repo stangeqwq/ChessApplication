@@ -256,21 +256,22 @@ public class Rook implements ChessPiece {
 
     public void setPosition(String move) {
         if (isValidPosition(move)) {
-            if (move == "0-0" || move == "O-O" && this.getOwner().getColorIsWhite()) { // set white kingside castles
+            if ((move == "0-0" || move == "O-O") && (this.getOwner().getColorIsWhite())) { // set white kingside castles
                 this.position = "f1";
                 this.getOwner().getKing().forceSetPosition("g1");
 
-            } else if (move == "0-0-0" || move == "O-O-O" && this.getOwner().getColorIsWhite()) { // set white queenside
+            } else if ((move == "0-0-0" || move == "O-O-O") && (this.getOwner().getColorIsWhite())) { // set white
+                                                                                                      // queenside
                 // castles
                 this.position = "d1";
                 this.getOwner().getKing().forceSetPosition("c1");
-            } else if (move == "0-0" || move == "O-O" && !this.getOwner().getColorIsWhite()) { // set black kingside
-                                                                                               // castles
+            } else if ((move == "0-0" || move == "O-O") && !this.getOwner().getColorIsWhite()) { // set black kingside
+                                                                                                 // castles
                 this.position = "f8";
                 this.getOwner().getKing().forceSetPosition("g8");
 
-            } else if (move == "0-0-0" || move == "O-O-O" && !this.getOwner().getColorIsWhite()) { // set black
-                                                                                                   // queenside
+            } else if ((move == "0-0-0" || move == "O-O-O") && !this.getOwner().getColorIsWhite()) { // set black
+                                                                                                     // queenside
                 this.position = "d8";
                 this.getOwner().getKing().forceSetPosition("c8");
 

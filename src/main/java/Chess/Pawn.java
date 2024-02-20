@@ -258,12 +258,12 @@ public class Pawn implements ChessPiece {
         if (isWhite) {
             if (row + 1 >= '1' && column + 1 <= 'h') {
                 attackingPositions
-                        .add(Character.toString((char) (column + 1)) + Character.toString((char) (row - 1)));
+                        .add(Character.toString((char) (column + 1)) + Character.toString((char) (row + 1)));
             }
 
             if (row + 1 >= '1' && column - 1 >= 'a') {
                 attackingPositions
-                        .add(Character.toString((char) (column - 1)) + Character.toString((char) (row - 1)));
+                        .add(Character.toString((char) (column - 1)) + Character.toString((char) (row + 1)));
             }
         } else {
             if (row - 1 >= '1' && column + 1 <= 'h') {
