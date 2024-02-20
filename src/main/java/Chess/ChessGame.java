@@ -311,7 +311,8 @@ public class ChessGame {
         game4.move("Kd8");
         System.out.println(game4.getBoard());
         // game4.move("Kxf2"); // can't capture own piece error as expected NICE
-        game4.move("Kd1"); //
+        // game4.move("Kf1"); // can't move to attacked square ERROR AS EXPECTED NICE
+        game4.move("Kd1");
         System.out.println(game4.getBoard());
         System.out.println(game4.toString());
     }

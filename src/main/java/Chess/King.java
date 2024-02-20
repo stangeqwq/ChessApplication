@@ -69,10 +69,8 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // left
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(0) > 'a'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -86,10 +84,8 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // up
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(1) < '8') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -102,10 +98,8 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // down
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(1) > '1') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -118,11 +112,9 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
 
         // up right
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) < '8') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -136,10 +128,8 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // up left
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) < '8') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -153,10 +143,8 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // down right
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) > '1') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -170,10 +158,8 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // down left
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) > '1') {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
@@ -187,18 +173,20 @@ public class King implements ChessPiece {
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // now check for each validPositionsTo if a piece is attacking it/covers it in
         // their validPositionsTo (remove it)
         // in such a case, that position can't be moved to
         // checkmate is if king is (in check+ will be coded) + no validPositionsTo
+        List<String> finalValidPositionsTo = new ArrayList();
         for (String validPositionTo : validPositionsTo) {
             if (isInAttack(validPositionTo)) {
-                validPositionsTo.remove(validPositionsTo.indexOf(validPositionTo));
+            } else {
+                finalValidPositionsTo.add(validPositionTo);
             }
+
         }
-        return validPositionsTo;
+        return finalValidPositionsTo;
     }
 
     public boolean isInAttack(String positionTo) {
@@ -292,10 +280,8 @@ public class King implements ChessPiece {
                 // capturing
                 attackingPositions.add(Character.toString('x') + toPosition);
             }
-            currentPositionCheck = toPosition;
         }
         // left
-        currentPositionCheck = this.position;
         if (currentPositionCheck.charAt(0) > 'a'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -347,11 +333,11 @@ public class King implements ChessPiece {
             row = (char) (row + 1);
             String toPosition = Character.toString(column) + Character.toString(row);
             if (!isOccupied(toPosition)) {
-                validPositionsTo.add(toPosition);
+                attackingPositions.add(toPosition);
             } else if (isEnemy(toPosition)) {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
-                validPositionsTo.add(Character.toString('x') + toPosition);
+                attackingPositions.add(Character.toString('x') + toPosition);
             }
         }
         // up left
@@ -362,11 +348,11 @@ public class King implements ChessPiece {
             row = (char) (row + 1);
             String toPosition = Character.toString(column) + Character.toString(row);
             if (!isOccupied(toPosition)) {
-                validPositionsTo.add(toPosition);
+                attackingPositions.add(toPosition);
             } else if (isEnemy(toPosition)) {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
-                validPositionsTo.add(Character.toString('x') + toPosition);
+                attackingPositions.add(Character.toString('x') + toPosition);
             }
         }
         // down right
