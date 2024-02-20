@@ -44,7 +44,7 @@ public class Bishop implements ChessPiece {
 
     private boolean isEnemy(String toPosition) {
         for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) {
-            if (piece.getPosition() == toPosition) {
+            if (piece.getPosition().equals(toPosition)) {
                 return true;
             }
         }
@@ -162,7 +162,8 @@ public class Bishop implements ChessPiece {
             } else { // we check including the "x" pieces but this time specifying only position
                      // interested
                 for (String validPositionTo : validPositionsTo) {
-                    if (validPositionTo.substring(validPositionTo.length() - 2).equals(position)) {
+                    if (validPositionTo.substring(validPositionTo.length() - 2).equals(position)
+                            && validPositionTo.length() == 3) { // actually have to capture a piece when capturing
                         return true;
                     }
                 }

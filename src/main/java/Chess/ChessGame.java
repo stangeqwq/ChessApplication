@@ -83,7 +83,7 @@ public class ChessGame {
             }
         }
 
-        String board = String.format("A     B     C     D     E     F     G     H\n" + //
+        String board = String.format("     A     B     C     D     E     F     G     H\n" + //
                 "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
                 "8 |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  |  %s  | 8\n" + //
                 "  |—————|—————|—————|—————|—————|—————|—————|—————|\n" + //
@@ -227,6 +227,24 @@ public class ChessGame {
         game3.move("e5");
         System.out.println(game3.getBoard());
         game3.move("Bb5");
+        System.out.println(game3.getBoard());
+        game3.move("c6");
+        System.out.println(game3.getBoard());
+        // game3.move("Bxa4"); //error as expected
+        game3.move("Bxc6");
+        System.out.println(game3.getBoard());
+        System.out.println(game3.getBoard());
+        System.out.println(game3.getBlackPlayer().getPiecePositions());
+        // game3.move("Bxe7"); // error as expected
+        game3.move("bxc6");
+        System.out.println(game3.getBoard());
+        game3.move("Nf3");
+        System.out.println(game3.getBoard());
+        game3.move("Ba6");
+        System.out.println(game3.getBoard());
+        game3.move("c4");
+        System.out.println(game3.getBoard());
+        game3.move("Bxc4");
         System.out.println(game3.getBoard());
     }
 }
