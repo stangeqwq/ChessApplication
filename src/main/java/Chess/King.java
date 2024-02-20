@@ -203,8 +203,8 @@ public class King implements ChessPiece {
 
     public boolean isInAttack(String positionTo) {
         for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) {
-            for (String validPositionTo : piece.getAttackingPositions()) {
-                if (validPositionTo.equals(positionTo)) {
+            for (String attackedPosition : piece.getAttackingPositions()) {
+                if (positionTo.equals(attackedPosition.substring(attackedPosition.length() - 2)) && piece != this) {
                     return true;
                 }
             }
@@ -268,5 +268,10 @@ public class King implements ChessPiece {
 
     public String getPosition() {
         return this.position;
+    }
+
+    public List<String> getAttackingPositions() {
+        List<String> attackingPositions = getValidPositionsTo(this.getPosition());
+        return attackingPositions;
     }
 }

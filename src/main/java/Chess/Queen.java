@@ -263,4 +263,9 @@ public class Queen implements ChessPiece {
     public String getPosition() {
         return this.position;
     }
+
+    public List<String> getAttackingPositions() {
+        List<String> attackingPositions = getValidPositionsTo(this.getPosition());
+        return attackingPositions;
+    }
 }

@@ -187,6 +187,11 @@ public class Rook implements ChessPiece {
         return this.initial;
     }
 
+    public List<String> getAttackingPositions() {
+        List<String> attackingPositions = getValidPositionsTo(this.getPosition());
+        return attackingPositions;
+    }
+
     public static void main(String args[]) {
         System.out.println("Test");
     }

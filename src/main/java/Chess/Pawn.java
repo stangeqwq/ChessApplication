@@ -247,4 +247,9 @@ public class Pawn implements ChessPiece {
         System.out.println((!capturing && (move.charAt(move.length() - 1) == (char) (position.charAt(0) - 1)
                 || move.charAt(move.length() - 1) == (char) (position.charAt(0) + 1))));
     }
+
+    public List<String> getAttackingPositions() {
+        List<String> attackingPositions = generateValidPositionsTo(this.getPosition());
+        return attackingPositions;
+    }
 }
