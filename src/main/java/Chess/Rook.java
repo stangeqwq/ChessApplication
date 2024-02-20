@@ -252,11 +252,30 @@ public class Rook implements ChessPiece {
 
     public void setPosition(String move) {
         if (isValidPosition(move)) {
-            this.position = move.substring(move.length() - 2);
-            this.hasmoved = true;
-            this.getOwner().getOpponent().removePieceAtPosition(this.position);
-        }
+            if (move == "0-0" || move == "O-O" && this.getOwner().getColorIsWhite()) { // set white kingside castles
+                this.position = "f1";
+                this.getOwner().getKing().forceSetPosition("g1");
 
+            } else if (move == "0-0-0" || move == "O-O-O" && this.getOwner().getColorIsWhite()) { // set white queenside
+                // castles
+                this.position = "d1";
+                this.getOwner().getKing().forceSetPosition("c1");
+            } else if (move == "0-0" || move == "O-O" && !this.getOwner().getColorIsWhite()) { // set black kingside
+                                                                                               // castles
+                this.position = "f8";
+                this.getOwner().getKing().forceSetPosition("g8");
+
+            } else if (move == "0-0-0" || move == "O-O-O" && !this.getOwner().getColorIsWhite()) { // set black
+                                                                                                   // queenside
+                this.position = "d8";
+                this.getOwner().getKing().forceSetPosition("c8");
+
+            } else {
+                this.position = move.substring(move.length() - 2);
+                this.getOwner().getOpponent().removePieceAtPosition(this.position);
+            }
+            this.hasmoved = true;
+        }
     }
 
     public String getPosition() {

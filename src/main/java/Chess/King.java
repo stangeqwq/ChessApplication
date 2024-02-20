@@ -287,6 +287,11 @@ public class King implements ChessPiece {
         }
     }
 
+    public void forceSetPosition(String position) { // used when castling
+        this.position = position;
+        hasmoved = true;
+    }
+
     public boolean getHasmoved() {
         return this.hasmoved;
     }

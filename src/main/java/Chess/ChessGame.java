@@ -41,6 +41,7 @@ public class ChessGame {
                 if (isCheckmated(this.getBlackPlayer().getKing())) {
                     System.out.println(
                             String.format("Congrats %s! You checkmated the king!", this.getWhitePlayer().getName()));
+                    System.out.println(this.getBoard());
                     finished = true;
                 }
 
@@ -67,6 +68,7 @@ public class ChessGame {
                 if (isCheckmated(this.getWhitePlayer().getKing())) {
                     System.out.println(
                             String.format("Congrats %s! You checkmated the king!", this.getBlackPlayer().getName()));
+                    System.out.println(this.getBoard());
                     finished = true;
                 }
             }
@@ -431,7 +433,8 @@ public class ChessGame {
         game6.move("a4");
         System.out.println(game6.getBoard());
         game6.move("Qxf7");
-        System.out.println(game6.getBoard());
         game6.move("a3");
+
+        //
     }
 }
