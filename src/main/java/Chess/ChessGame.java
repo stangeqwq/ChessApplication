@@ -220,5 +220,13 @@ public class ChessGame {
         System.out.println(game2.getBoard());
 
         // TESTING OUT THE BISHOP CLASSES
+        ChessGame game3 = new ChessGame("Jomah", "Barry");
+        System.out.println(game3.getBoard());
+        game3.move("e4");
+        System.out.println(game3.getBoard());
+        game3.move("e5");
+        System.out.println(game3.getBoard());
+        game3.move("Bb5");
+        System.out.println(game3.getBoard());
     }
 }
