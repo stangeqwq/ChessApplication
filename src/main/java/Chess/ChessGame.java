@@ -297,6 +297,13 @@ public class ChessGame {
         game4.move("Rg3");
         System.out.println(game4.getBoard());
         System.out.println(game4.toString());
-
+        game4.move("Qa5");
+        System.out.println(game4.getBoard());
+        game4.move("Qa4");
+        System.out.println(game4.getBoard());
+        game4.move("Qxa4");
+        System.out.println(game4.getBoard());
+        System.out.println(game4.getWhitePlayer().getPiecePositions());
+        System.out.println(game4.toString());
     }
 }

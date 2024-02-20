@@ -207,9 +207,43 @@ public class Queen implements ChessPiece {
     }
 
     public boolean isValidPosition(String move) {
+        boolean capturing = false;
+        String position = move.substring(move.length() - 2);
         if (Character.isLowerCase(move.charAt(0))) {
             return false; // it is a pawn
-        } else {
+        } else if (move.charAt(0) == this.getInitial()) {
+            if (move.length() >= 4) { // f.e. Rxe5 or Rdxe4 or Rde4
+                if (move.charAt(move.length() - 3) == 'x') {
+                    capturing = true;
+                } else if ((move.charAt(move.length() - 3) == this.getPosition().charAt(0))
+                        || (move.charAt(move.length() - 3) == this.getPosition().charAt(1))) {
+                    // specified which rook piece so we check if this rook is correct (for both
+                    // row and column)
+                    // do nothing we continue below
+
+                } else {
+                    return false; // this is the wrong bishop (different column / row to specified)
+                }
+            }
+            List<String> validPositionsTo = getValidPositionsTo(this.getPosition());
+            if (!capturing) { // position must not be occupied and in validPositionsTo
+                for (String validPositionTo : validPositionsTo) {
+                    if (validPositionTo.equals(position)) {
+                        return true;
+                    }
+                }
+            } else { // we check including the "x" pieces but this time specifying only position
+                     // interested
+                for (String validPositionTo : validPositionsTo) {
+                    if (validPositionTo.substring(validPositionTo.length() - 2).equals(position)
+                            && validPositionTo.length() == 3) { // actually have to capture a piece when capturing
+                        return true;
+                    }
+                }
+
+            }
+        } else { // not same initial to rook
+            return false;
         }
         return false;
     }

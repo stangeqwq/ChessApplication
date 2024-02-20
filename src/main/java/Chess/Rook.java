@@ -165,7 +165,7 @@ public class Rook implements ChessPiece {
                 }
 
             }
-        } else { // not same initial to bishop
+        } else { // not same initial to rook
             return false;
         }
         return false;
