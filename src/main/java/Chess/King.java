@@ -7,6 +7,7 @@ public class King implements ChessPiece {
     private String position = "a1";
     private Character initial = 'K';
     private Player owner = null;
+    private boolean hasmoved = false;
 
     private Character[] validColumns = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
     private Character[] validRows = { '1', '2', '3', '4', '5', '6', '7', '8' };
@@ -282,7 +283,12 @@ public class King implements ChessPiece {
             // we only take "a4" f.e. type not whole position "Ndxe4" this must be validated
             this.position = move.substring(move.length() - 2);
             this.getOwner().getOpponent().removePieceAtPosition(this.position);
+            hasmoved = true;
         }
+    }
+
+    public boolean getHasmoved() {
+        return this.hasmoved;
     }
 
     public Character getInitial() {

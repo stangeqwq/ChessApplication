@@ -7,7 +7,7 @@ public class Rook implements ChessPiece {
     private String position = "a1";
     private Character initial = 'R';
     private Player owner = null;
-
+    private boolean hasmoved = false;
     private Character[] validColumns = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
     private Character[] validRows = { '1', '2', '3', '4', '5', '6', '7', '8' };
     private List<String> validPositionsTo = new ArrayList<String>();
@@ -24,6 +24,10 @@ public class Rook implements ChessPiece {
         if (this.owner == null) {
             this.owner = owner;
         }
+    }
+
+    public boolean getHasmoved() {
+        return this.hasmoved;
     }
 
     private boolean isOccupied(String toPosition) {
@@ -146,9 +150,65 @@ public class Rook implements ChessPiece {
         return validPositionsTo;
     }
 
+    public boolean rightCastling(String castling) {
+        if (!this.getOwner().getKing().getHasmoved() && this.hasmoved == false
+                && !this.getOwner().getKing().isInAttack(this.getOwner().getKing().getPosition())) {
+            if ((castling == "0-0" || castling == "O-O") && this.getOwner().getColorIsWhite()) { // white castling
+                                                                                                 // kingside
+                if (!isOccupied("f1") && !isOccupied("g1") && !this.getOwner().getKing().isInAttack("f1")
+                        && !this.getOwner().getKing().isInAttack("g1")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if ((castling == "0-0-0" || castling == "O-O-O") && this.getOwner().getColorIsWhite()) { // white
+                                                                                                            // castling
+                                                                                                            // kingside
+                if (!isOccupied("d1") && !isOccupied("c1") && !this.getOwner().getKing().isInAttack("d1")
+                        && !this.getOwner().getKing().isInAttack("c1")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if ((castling == "0-0" || castling == "O-O") && !this.getOwner().getColorIsWhite()) { // black
+                                                                                                         // castling
+                                                                                                         // kingside
+                if (!isOccupied("f8") && !isOccupied("g8") && !this.getOwner().getKing().isInAttack("f8")
+                        && !this.getOwner().getKing().isInAttack("g8")) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else if ((castling == "0-0-0" || castling == "O-O-O") && !this.getOwner().getColorIsWhite()) { // black
+                                                                                                             // castling
+                                                                                                             // queenside
+                if (!isOccupied("c8") && !isOccupied("d8") && !this.getOwner().getKing().isInAttack("c8")
+                        && !this.getOwner().getKing().isInAttack("d8")) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
     public boolean isValidPosition(String move) {
         boolean capturing = false;
         String position = move.substring(move.length() - 2);
+        // check if castling is 0-0 or 0-0-0 or O-O or O-O-O is indicated
+        if (move == "0-0" || move == "0-0-0" || move == "O-O" || move == "O-O-O") {
+            if (rightCastling(move)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
         if (Character.isLowerCase(move.charAt(0))) {
             return false; // it is a pawn
         } else if (move.charAt(0) == this.getInitial()) {
@@ -193,6 +253,7 @@ public class Rook implements ChessPiece {
     public void setPosition(String move) {
         if (isValidPosition(move)) {
             this.position = move.substring(move.length() - 2);
+            this.hasmoved = true;
             this.getOwner().getOpponent().removePieceAtPosition(this.position);
         }
 

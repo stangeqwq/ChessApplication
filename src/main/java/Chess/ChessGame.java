@@ -31,6 +31,8 @@ public class ChessGame {
                                                                // be under attack
                 } else if (isCheckmated(this.getBlackPlayer().getKing())) {
                     moves.add(move + Character.toString('#'));
+                } else {
+                    moves.add(move);
                 }
                 whiteTurn = false;
                 // check if opponent king is checkmated (under attack + no valid positions to
