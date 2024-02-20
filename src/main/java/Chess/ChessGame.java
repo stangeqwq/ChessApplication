@@ -435,6 +435,25 @@ public class ChessGame {
         game6.move("Qxf7");
         game6.move("a3");
 
-        //
+        // CHECKING if castling works both kingside for black and white and queenside
+        // for black and white
+        ChessGame game7 = new ChessGame("Troy", "Robert");
+        System.out.println(game7.getBoard());
+        game7.move("e4");
+        System.out.println(game7.getBoard());
+        game7.move("e5");
+        System.out.println(game7.getBoard());
+        game7.move("Nf3");
+        System.out.println(game7.getBoard());
+        game7.move("Nf6");
+        System.out.println(game7.getBoard());
+        game7.move("Be2");
+        System.out.println(game7.getBoard());
+        game7.move("Be7");
+        System.out.println(game7.getBoard());
+        game7.move("O-O");
+        System.out.println(game7.getBoard());
+        game7.move("O-O");
+
     }
 }
