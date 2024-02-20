@@ -26,19 +26,35 @@ public class Bishop implements ChessPiece {
         }
     }
 
-    public boolean isValidPosition(String position) { // takes a position without an initial
-        if (Character.isLowerCase(position.charAt(0))) {
-            return false; // it is a pawn
-        } else {
+    public List<String> getValidPositionsTo(String position) {
+        // diagonal pattern
+        List<String> validPositionsTo = new ArrayList<String>();
+        // up right
+        String currentPositionCheck = this.position;
+        while (currentPositionCheck.CharAt(0) >=) {
 
+        }
+        // up left
+        // down right
+        // down left
+        return validPositionsTo;
+    }
+
+    public boolean isValidPosition(String move) { // takes a position without an initial
+        if (Character.isLowerCase(move.charAt(0))) {
+            return false; // it is a pawn
+        } else if (move.charAt(0) == this.getInitial()) {
+            List<String> validPositionsTo = getValidPositionsTo(this.getPosition());
+        } else {
+            return false;
         }
         return false;
     }
 
-    public void setPosition(String position) {
-        if (isValidPosition(position)) {
+    public void setPosition(String move) {
+        if (isValidPosition(move)) {
             // we only take "a4" f.e. type not whole position "Ndxe4" this must be validated
-            this.position = position;
+            this.position = move.substring(move.length() - 2);
         }
     }
 
