@@ -8,6 +8,8 @@ public class Player {
     private Player opponent;
     private boolean isWhite = true;
     private List<ChessPiece> pieces = new ArrayList<ChessPiece>();
+    private King blackKing = null; // save the king for the player as this is used in checking checkmate
+    private King whiteKing = null;
 
     public Player(String name, boolean isWhite) {
         this.name = name;
@@ -23,6 +25,7 @@ public class Player {
     }
 
     public void move(String move) {
+
         // input will be of form "Ke4" (king to e4) or "Ne5" etc. Nxe4, or Ndxe4
         // (different column) or N3xe4 (different row)
         // validation of the actual position happens in the chess pieces classes
@@ -101,8 +104,8 @@ public class Player {
             pieces.add(new Rook(String.format("%c%c", 'h', '1')));
             pieces.add(new Bishop(String.format("%c%c", 'c', '1')));
             pieces.add(new Bishop(String.format("%c%c", 'f', '1')));
-
-            pieces.add(new King(String.format("%c%c", 'e', '1')));
+            whiteKing = new King(String.format("%c%c", 'e', '1'));
+            pieces.add(whiteKing);
             pieces.add(new Queen(String.format("%c%c", 'd', '1')));
 
         } else {
@@ -116,7 +119,8 @@ public class Player {
             pieces.add(new Bishop(String.format("%c%c", 'c', '8')));
             pieces.add(new Bishop(String.format("%c%c", 'f', '8')));
 
-            pieces.add(new King(String.format("%c%c", 'e', '8')));
+            blackKing = new King(String.format("%c%c", 'e', '8'));
+            pieces.add(blackKing);
             pieces.add(new Queen(String.format("%c%c", 'd', '8')));
         }
         for (ChessPiece piece : pieces) {
@@ -146,6 +150,14 @@ public class Player {
 
     public List<ChessPiece> getPieces() {
         return pieces;
+    }
+
+    public King getKing() {
+        if (isWhite) {
+            return this.whiteKing;
+        } else {
+            return this.blackKing;
+        }
     }
 
     public static void main(String args[]) {
