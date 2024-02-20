@@ -26,17 +26,50 @@ public class Bishop implements ChessPiece {
         }
     }
 
+    private boolean isOccupied(String toPosition) {
+        for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) { // check enemy pieces
+            if (piece.getPosition() == toPosition) {
+                return true;
+            }
+
+        }
+        for (ChessPiece piece : this.getOwner().getPieces()) { // checks friendly pieces
+            if (piece.getPosition() == toPosition) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
     public List<String> getValidPositionsTo(String position) {
         // diagonal pattern
         List<String> validPositionsTo = new ArrayList<String>();
         // up right
         String currentPositionCheck = this.position;
-        while (currentPositionCheck.CharAt(0) >=) {
+        while (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) < '8') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            column = (char) (column + 1);
+            row = (char) (row + 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                validPositionsTo.add(toPosition);
+            }
 
         }
         // up left
+        while (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) < '8') {
+
+        }
         // down right
+        while (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) > '1') {
+
+        }
         // down left
+        while (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) > '1') {
+
+        }
         return validPositionsTo;
     }
 
