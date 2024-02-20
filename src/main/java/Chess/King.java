@@ -204,7 +204,7 @@ public class King implements ChessPiece {
     public boolean isInAttack(String positionTo) {
         for (ChessPiece piece : this.getOwner().getOpponent().getPieces()) {
             for (String attackedPosition : piece.getAttackingPositions()) {
-                if (positionTo.equals(attackedPosition.substring(attackedPosition.length() - 2)) && piece != this) {
+                if (positionTo.equals(attackedPosition.substring(attackedPosition.length() - 2))) {
                     return true;
                 }
             }
@@ -271,7 +271,134 @@ public class King implements ChessPiece {
     }
 
     public List<String> getAttackingPositions() {
-        List<String> attackingPositions = getValidPositionsTo(this.getPosition());
+        List<String> attackingPositions = new ArrayList<String>(); // should be all possible moves since one square only
+                                                                   // here we don't check for if it is in attack or not
+                                                                   // as we are not moving but attacking
+
+        // check for checked positions
+        // cross pattern and diagonal pattern (essentially bishop + rook class) without
+        // range so no while loop
+        // right
+        String currentPositionCheck = this.position;
+        if (currentPositionCheck.charAt(0) < 'h') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            column = (char) (column + 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                attackingPositions.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                attackingPositions.add(Character.toString('x') + toPosition);
+            }
+            currentPositionCheck = toPosition;
+        }
+        // left
+        currentPositionCheck = this.position;
+        if (currentPositionCheck.charAt(0) > 'a'
+                && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            column = (char) (column - 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                attackingPositions.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                attackingPositions.add(Character.toString('x') + toPosition);
+            }
+        }
+        // up
+        if (currentPositionCheck.charAt(1) < '8') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            row = (char) (row + 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                attackingPositions.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                attackingPositions.add(Character.toString('x') + toPosition);
+            }
+        }
+        // down
+        if (currentPositionCheck.charAt(1) > '1') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            row = (char) (row - 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                attackingPositions.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                attackingPositions.add(Character.toString('x') + toPosition);
+            }
+        }
+
+        // up right
+        if (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) < '8') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            column = (char) (column + 1);
+            row = (char) (row + 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                validPositionsTo.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                validPositionsTo.add(Character.toString('x') + toPosition);
+            }
+        }
+        // up left
+        if (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) < '8') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            column = (char) (column - 1);
+            row = (char) (row + 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                validPositionsTo.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                validPositionsTo.add(Character.toString('x') + toPosition);
+            }
+        }
+        // down right
+        if (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) > '1') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            column = (char) (column + 1);
+            row = (char) (row - 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                attackingPositions.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                attackingPositions.add(Character.toString('x') + toPosition);
+            }
+        }
+        // down left
+        if (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) > '1') {
+            Character column = currentPositionCheck.charAt(0);
+            Character row = currentPositionCheck.charAt(1);
+            column = (char) (column - 1);
+            row = (char) (row - 1);
+            String toPosition = Character.toString(column) + Character.toString(row);
+            if (!isOccupied(toPosition)) {
+                attackingPositions.add(toPosition);
+            } else if (isEnemy(toPosition)) {
+                // add first occupied square if enemy position's with specification 'x' for
+                // capturing
+                attackingPositions.add(Character.toString('x') + toPosition);
+            }
+        }
         return attackingPositions;
     }
 }

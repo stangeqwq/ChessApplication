@@ -249,7 +249,34 @@ public class Pawn implements ChessPiece {
     }
 
     public List<String> getAttackingPositions() {
-        List<String> attackingPositions = generateValidPositionsTo(this.getPosition());
+        List<String> attackingPositions = new ArrayList<String>(); // forward positions are not
+                                                                   // valid
+                                                                   // capturing pieces
+        String position = this.getPosition();
+        Character row = position.charAt(1);
+        Character column = position.charAt(0);
+        if (isWhite) {
+            if (row + 1 >= '1' && column + 1 <= 'h') {
+                attackingPositions
+                        .add(Character.toString((char) (column + 1)) + Character.toString((char) (row - 1)));
+            }
+
+            if (row + 1 >= '1' && column - 1 >= 'a') {
+                attackingPositions
+                        .add(Character.toString((char) (column - 1)) + Character.toString((char) (row - 1)));
+            }
+        } else {
+            if (row - 1 >= '1' && column + 1 <= 'h') {
+                attackingPositions
+                        .add(Character.toString((char) (column + 1)) + Character.toString((char) (row - 1)));
+            }
+
+            if (row - 1 >= '1' && column - 1 >= 'a') {
+                attackingPositions
+                        .add(Character.toString((char) (column - 1)) + Character.toString((char) (row - 1)));
+            }
+        }
+
         return attackingPositions;
     }
 }

@@ -306,7 +306,7 @@ public class ChessGame {
         System.out.println(game4.getWhitePlayer().getPiecePositions());
         System.out.println(game4.toString());
         // game4.move("Ke3"); // error as expected more than range
-        game4.move("Ke2");
+        game4.move("b3");
         System.out.println(game4.getBoard());
         game4.move("Kd8");
         System.out.println(game4.getBoard());
