@@ -57,7 +57,11 @@ public class Bishop implements ChessPiece {
         // up right
         String currentPositionCheck = this.position;
         while (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) < '8'
-                && !isOccupied(currentPositionCheck)) {
+                && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) { // ignore
+                                                                                                             // first
+                                                                                                             // case of
+                                                                                                             // currentposition
+                                                                                                             // (bug)
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
             column = (char) (column + 1);
@@ -73,8 +77,9 @@ public class Bishop implements ChessPiece {
             currentPositionCheck = toPosition;
         }
         // up left
+        currentPositionCheck = this.position;
         while (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) < '8'
-                && !isOccupied(currentPositionCheck)) {
+                && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
             column = (char) (column - 1);
@@ -90,8 +95,9 @@ public class Bishop implements ChessPiece {
             currentPositionCheck = toPosition;
         }
         // down right
+        currentPositionCheck = this.position;
         while (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) > '1'
-                && !isOccupied(currentPositionCheck)) {
+                && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
             column = (char) (column + 1);
@@ -107,8 +113,9 @@ public class Bishop implements ChessPiece {
             currentPositionCheck = toPosition;
         }
         // down left
+        currentPositionCheck = this.position;
         while (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) > '1'
-                && !isOccupied(currentPositionCheck)) {
+                && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
             Character row = currentPositionCheck.charAt(1);
             column = (char) (column - 1);
