@@ -25,7 +25,12 @@ public class ChessGame {
                     System.out.println("The white king is in check. You must protect the king");
                     throw new IllegalArgumentException();
                 }
-                moves.add(move);
+                if (this.getBlackPlayer().getKing().isInAttack(this.getBlackPlayer().getKing().getPosition())) {
+                    moves.add(move + Character.toString('+')); // add check sign to the move if caused opponent king to
+                                                               // be under attack
+                } else {
+                    moves.add(move);
+                }
                 whiteTurn = false;
                 // check if king is checkmated (under attack + no valid positions to for all
                 // pieces) after that move
@@ -345,5 +350,21 @@ public class ChessGame {
         game4.move("Kd1");
         System.out.println(game4.getBoard());
         System.out.println(game4.toString());
+
+        // CHECKING "CHECK" PART OF CHESS
+        ChessGame game5 = new ChessGame("Howard", "Barry");
+        System.out.println(game5.getBoard());
+        game5.move("e4");
+        System.out.println(game5.getBoard());
+        game5.move("e5");
+        System.out.println(game5.getBoard());
+        game5.move("Qf3");
+        System.out.println(game5.getBoard());
+        game5.move("h6");
+        System.out.println(game5.getBoard());
+        game5.move("Qxf7"); // should get '+' sign YES CORRECT
+        System.out.println(game5.getBoard());
+        System.out.println(game5.toString());
+        game5.move("a6"); // ignore check ILLEGAL ARGUMENT EXPECTED (correct!!)
     }
 }
