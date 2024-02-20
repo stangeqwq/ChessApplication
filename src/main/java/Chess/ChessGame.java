@@ -19,13 +19,14 @@ public class ChessGame {
     public void move(String move) {
         if (!finished) {
             if (whiteTurn) {
-                // check if king is in check
+                player1.move(move);
+
+                // check if king is still in check
                 if (this.getWhitePlayer().getKing().isInAttack(this.getWhitePlayer().getKing().getPosition())
                         && move.charAt(0) != 'K') {
-                    System.out.println("The white king is in check. You must move the king");
+                    System.out.println("The white king is in check. You must protect the king");
                     throw new IllegalArgumentException();
                 }
-                player1.move(move);
                 moves.add(move);
                 whiteTurn = false;
                 // check if king is checkmated (under attack + no valid positions to) after that
@@ -36,15 +37,18 @@ public class ChessGame {
                     System.out.println(String.format("You checkmated the black king! Congrats %s!",
                             this.getWhitePlayer().getName()));
                     finished = true;
+                    moves.add()
                 }
             } else {
-                // check if king is in check
+
+                player2.move(move);
+
+                // check if king is still in check
                 if (this.getBlackPlayer().getKing().isInAttack(this.getBlackPlayer().getKing().getPosition())
                         && move.charAt(0) != 'K') {
-                    System.out.println("The black king is in check. You must move the king");
+                    System.out.println("The black king is in check. You must protect the king");
                     throw new IllegalArgumentException();
                 }
-                player2.move(move);
                 moves.add(move);
                 whiteTurn = true;
                 // check if king is checkmated (under attack + no valid positions to) after that
