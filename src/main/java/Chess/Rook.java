@@ -54,6 +54,7 @@ public class Rook implements ChessPiece {
     public List<String> getValidPositionsTo(String position) {
         // cross pattern
         List<String> validPositionsTo = new ArrayList<String>();
+        boolean firstFriendly = true;
         // right
         String currentPositionCheck = this.position;
         while (currentPositionCheck.charAt(0) < 'h'
@@ -72,11 +73,15 @@ public class Rook implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // left
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(0) > 'a'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -89,11 +94,15 @@ public class Rook implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // up
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(1) < '8'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -106,11 +115,16 @@ public class Rook implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
+
             currentPositionCheck = toPosition;
         }
         // down
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(1) > '1'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -123,6 +137,9 @@ public class Rook implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
@@ -159,7 +176,9 @@ public class Rook implements ChessPiece {
                      // interested
                 for (String validPositionTo : validPositionsTo) {
                     if (validPositionTo.substring(validPositionTo.length() - 2).equals(position)
-                            && validPositionTo.length() == 3) { // actually have to capture a piece when capturing
+                            && validPositionTo.length() == 3 && validPositionTo.charAt(0) == 'x') { // actually have to
+                                                                                                    // capture a piece
+                                                                                                    // when capturing
                         return true;
                     }
                 }

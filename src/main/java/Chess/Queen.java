@@ -54,6 +54,7 @@ public class Queen implements ChessPiece {
     public List<String> getValidPositionsTo(String position) {
         // cross pattern and diagonal pattern (essentially bishop + rook class)
         List<String> validPositionsTo = new ArrayList<String>();
+        boolean firstFriendly = true;
         // right
         String currentPositionCheck = this.position;
         while (currentPositionCheck.charAt(0) < 'h'
@@ -72,11 +73,15 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // left
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(0) > 'a'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -89,11 +94,15 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // up
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(1) < '8'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -106,11 +115,15 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // down
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(1) > '1'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -123,12 +136,16 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
 
         // up right
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) < '8'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) { // ignore
                                                                                                              // first
@@ -146,11 +163,15 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // up left
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) < '8'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -164,11 +185,15 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // down right
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(0) < 'h' && currentPositionCheck.charAt(1) > '1'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -182,11 +207,15 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
         // down left
         currentPositionCheck = this.position;
+        firstFriendly = true;
         while (currentPositionCheck.charAt(0) > 'a' && currentPositionCheck.charAt(1) > '1'
                 && (!isOccupied(currentPositionCheck) || currentPositionCheck.equals(this.getPosition()))) {
             Character column = currentPositionCheck.charAt(0);
@@ -200,6 +229,9 @@ public class Queen implements ChessPiece {
                 // add first occupied square if enemy position's with specification 'x' for
                 // capturing
                 validPositionsTo.add(Character.toString('x') + toPosition);
+            } else if (firstFriendly) {
+                validPositionsTo.add(Character.toString('f') + toPosition); // add first friendly useful for checkmating
+                firstFriendly = false;
             }
             currentPositionCheck = toPosition;
         }
@@ -228,15 +260,18 @@ public class Queen implements ChessPiece {
             List<String> validPositionsTo = getValidPositionsTo(this.getPosition());
             if (!capturing) { // position must not be occupied and in validPositionsTo
                 for (String validPositionTo : validPositionsTo) {
-                    if (validPositionTo.equals(position)) {
+                    if (validPositionTo.equals(position)) { // we ignore the friendly cases since those have 'f'
                         return true;
                     }
                 }
             } else { // we check including the "x" pieces but this time specifying only position
+                     // we are not supposed to catch friendly
                      // interested
                 for (String validPositionTo : validPositionsTo) {
                     if (validPositionTo.substring(validPositionTo.length() - 2).equals(position)
-                            && validPositionTo.length() == 3) { // actually have to capture a piece when capturing
+                            && validPositionTo.length() == 3 && validPositionTo.charAt(0) == 'x') { // actually have to
+                                                                                                    // capture a piece
+                                                                                                    // when capturing
                         return true;
                     }
                 }
