@@ -47,7 +47,8 @@ public class ChessGame {
                 }
 
                 whiteTurn = true;
-                // check if king is checkmated (under attack + no valid positions to) after that
+                // check if king is checkmated (under attack + no valid positions to + no other
+                // position moves) after that
             }
         } else {
             System.out.println("This game is finished!\n See move lists and board:");
