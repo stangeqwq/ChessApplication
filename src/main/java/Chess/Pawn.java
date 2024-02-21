@@ -8,12 +8,10 @@ public class Pawn implements ChessPiece {
     private String position = "a1";
     private Character initial = null;
     private Player owner = null;
-    private boolean allowCapture = false;
+
     private boolean firstMove = true;
     private boolean isWhite = true;
 
-    private Character[] validColumns = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
-    private Character[] validRows = { '1', '2', '3', '4', '5', '6', '7', '8' };
     private List<String> validPositionsTo = new ArrayList<String>();
 
     public Pawn(String position, boolean isWhite) {

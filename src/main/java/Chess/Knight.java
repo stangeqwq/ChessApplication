@@ -8,8 +8,6 @@ public class Knight implements ChessPiece {
     private Character initial = 'N';
     private Player owner = null;
 
-    private Character[] validColumns = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
-    private Character[] validRows = { '1', '2', '3', '4', '5', '6', '7', '8' };
     private List<String> validPositionsTo = new ArrayList<String>();
 
     public Knight(String position) {
