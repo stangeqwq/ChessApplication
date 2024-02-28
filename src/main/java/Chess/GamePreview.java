@@ -3,19 +3,29 @@ package Chess;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
+import javafx.stage.Stage;
 
 public class GamePreview {
-    private int id = 0;
+    private int id = 1;
     @FXML
     private TextArea previewBoard;
     @FXML
     private TextArea previewMoves;
     @FXML
-    private Label gamePreview;
+    private TitledPane gamePreview;
+    @FXML
+    private Button loadButton;
 
     private String database = "SavedGamesDatabase.csv";
     private String moves_String;
@@ -44,13 +54,14 @@ public class GamePreview {
                     moves_String = columns[1];
                     whitePlayer = columns[2];
                     blackPlayer = columns[3];
-
                     break; // Exit the loop after reading the target row
                 }
             }
 
             ChessGame thegame = new ChessGame(whitePlayer, blackPlayer);
-            String[] moves = moves_String.split(".");
+            List<String> moves = Arrays.asList(moves_String.split("\\.")); // specify not all characters but strictly
+                                                                           // the dot
+
             for (String move : moves) {
                 thegame.move(move);
             }
@@ -62,6 +73,35 @@ public class GamePreview {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void LoadGame() {
+        try {
+            MainGameController mainController = new MainGameController();
+
+            // Set player names before loading
+            mainController.setPlayer1(whitePlayer);
+            mainController.setPlayer2(blackPlayer);
+            mainController.setId(id); // specify that this is a saved game
+
+            // Load the FXML file of the new scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainGame.fxml"));
+            loader.setController(mainController); // use the controller which have set the names with the inputs on this
+                                                  // scene
+            Parent root = loader.load();
+
+            // Create a new Scene with the loaded FXML content
+            Scene newScene = new Scene(root);
+
+            // Get the current stage (window)
+            Stage stage = (Stage) loadButton.getScene().getWindow();
+
+            // Switch to the new scene
+            stage.setScene(newScene);
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
         }
     }
 

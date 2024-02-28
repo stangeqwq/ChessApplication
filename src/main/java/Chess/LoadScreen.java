@@ -16,10 +16,12 @@ public class LoadScreen {
     public void initialize() {
         String database = "SavedGamesDatabase.csv";
         int numberOfTitledPanes = countLines(database); // Example: Get this from user input
+        System.out.println("Total of saved games:" + numberOfTitledPanes);
 
         try {
-            FXMLLoader titledPaneLoader = new FXMLLoader(getClass().getResource("GamePreview.fxml"));
-            for (int i = 1; i < numberOfTitledPanes; i++) {
+
+            for (int i = 2; i < numberOfTitledPanes + 2; i++) { // first row is header, we start at second row
+                FXMLLoader titledPaneLoader = new FXMLLoader(getClass().getResource("GamePreview.fxml"));
                 GamePreview previewGame = new GamePreview(i);
                 titledPaneLoader.setController(previewGame); // use the controller that displays each row game saved in
                                                              // database
