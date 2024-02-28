@@ -15,6 +15,6 @@
          </font></TextArea>
       <Button fx:id="OkButton" layoutX="277.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleInputMove" prefHeight="49.0" prefWidth="64.0" text="Ok" />
       <TextArea fx:id="MoveList" layoutX="733.0" layoutY="61.0" prefHeight="427.0" prefWidth="232.0" />
-      <Button fx:id="SaveExit" layoutX="37.0" layoutY="15.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="Save/Exit" />
+      <Button fx:id="SaveExit" onAction="#SaveExitClicked" layoutX="37.0" layoutY="15.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="Save/Exit" />
    </children>
 </Pane>

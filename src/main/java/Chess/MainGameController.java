@@ -21,6 +21,8 @@ public class MainGameController {
     private Button OkButton;
     @FXML
     private TextArea MoveList;
+    @FXML
+    private Button SaveExit;
 
     private String move;
 
@@ -58,6 +60,28 @@ public class MainGameController {
             System.out.println(event);
 
         }
+    }
+
+    @FXML
+    private void SaveExitClicked() {
+        // Load the FXML file of the new scene
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SaveExit.fxml"));
+            Parent root = loader.load();
+
+            // Create a new Scene with the loaded FXML content
+            Scene newScene = new Scene(root);
+
+            // Get the current stage (window)
+            Stage stage = (Stage) SaveExit.getScene().getWindow();
+
+            // Switch to the new scene
+            stage.setScene(newScene);
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+
     }
 
 }
