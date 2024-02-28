@@ -1,4 +1,4 @@
-package Chess;
+package Chess.controllers;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -114,7 +114,7 @@ public class SaveExitController {
         // end
         try {
             // Load the FXML file of the new scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../WelcomeScreen.fxml"));
             Parent root = loader.load();
 
             // Create a new Scene with the loaded FXML content
@@ -152,7 +152,7 @@ public class SaveExitController {
         try {
 
             // Load the FXML file of the new scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../WelcomeScreen.fxml"));
             Parent root = loader.load();
 
             // Create a new Scene with the loaded FXML content

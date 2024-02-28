@@ -1,4 +1,4 @@
-package Chess;
+package Chess.controllers;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
+import Chess.ChessGame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -93,7 +94,7 @@ public class GamePreviewController {
             mainController.setId(id); // specify that this is a saved game
 
             // Load the FXML file of the new scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainGame.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../MainGame.fxml"));
             loader.setController(mainController); // use the controller which have set the names with the inputs on this
                                                   // scene
             Parent root = loader.load();

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="Chess.StartChessController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="Chess.controllers.StartChessController">
    <children>
       <Button fx:id="startGameInput" layoutX="494.0" layoutY="349.0" mnemonicParsing="false" text="Start Game" onAction="#handleButtonClick"/>
       <TextField fx:id="inputPlayer1" layoutX="33.0" layoutY="52.0" prefHeight="26.0" prefWidth="318.0" promptText="Player 1 (white):" />

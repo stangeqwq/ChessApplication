@@ -1,4 +1,4 @@
-package Chess;
+package Chess.controllers;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -28,7 +28,7 @@ public class LoadScreenController {
         try {
 
             for (int i = 2; i < numberOfTitledPanes + 2; i++) { // first row is header, we start at second row
-                FXMLLoader titledPaneLoader = new FXMLLoader(getClass().getResource("GamePreview.fxml"));
+                FXMLLoader titledPaneLoader = new FXMLLoader(getClass().getResource("../../GamePreview.fxml"));
                 GamePreviewController previewGame = new GamePreviewController(i);
                 titledPaneLoader.setController(previewGame); // use the controller that displays each row game saved in
                                                              // database
@@ -59,7 +59,7 @@ public class LoadScreenController {
     @FXML
     private void goHome() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("WelcomeScreen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../WelcomeScreen.fxml"));
             Parent root = loader.load();
 
             // Create a new Scene with the loaded FXML content

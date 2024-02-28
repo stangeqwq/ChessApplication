@@ -1,4 +1,4 @@
-package Chess;
+package Chess.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +34,7 @@ public class StartChessController {
             mainController.setPlayer2(player2Name);
 
             // Load the FXML file of the new scene
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainGame.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../MainGame.fxml"));
             loader.setController(mainController); // use the controller which have set the names with the inputs on this
                                                   // scene
             Parent root = loader.load();

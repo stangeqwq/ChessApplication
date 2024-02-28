@@ -1,4 +1,4 @@
-package Chess;
+package Chess.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +16,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+
+import Chess.ChessGame;
 
 public class MainGameController {
     @FXML
@@ -123,7 +125,7 @@ public class MainGameController {
             ExitController.setBlackPlayer(player2);
             ExitController.setId(id);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SaveExit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../SaveExit.fxml"));
             loader.setController(ExitController);
             Parent root = loader.load();
 
