@@ -16,6 +16,10 @@ public class ChessGame {
         this.player2 = new Player(player2, false, this.player1);
     }
 
+    public List<String> getMovesList() {
+        return this.moves;
+    }
+
     public void move(String move) {
         if (!finished) {
             if (whiteTurn) {

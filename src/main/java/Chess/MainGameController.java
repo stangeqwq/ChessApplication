@@ -26,7 +26,7 @@ public class MainGameController {
 
     private String move;
 
-    private ChessGame game1;
+    private ChessGame thegame;
     private String player1;
     private String player2; // default
 
@@ -40,22 +40,22 @@ public class MainGameController {
 
     @FXML
     void initialize() {
-        game1 = new ChessGame(player1, player2);
+        thegame = new ChessGame(player1, player2);
         Board.clear();
-        Board.appendText(game1.getBoard());
+        Board.appendText(thegame.getBoard());
         MoveList.clear();
-        MoveList.appendText(game1.toString());
+        MoveList.appendText(thegame.toString());
     }
 
     @FXML
     private void handleInputMove() {
         try {
             move = inputMove.getText();
-            game1.move(move);
+            thegame.move(move);
             Board.clear();
-            Board.appendText(game1.getBoard());
+            Board.appendText(thegame.getBoard());
             MoveList.clear();
-            MoveList.appendText(game1.toString());
+            MoveList.appendText(thegame.toString());
         } catch (Exception event) {
             System.out.println(event);
 
@@ -66,7 +66,12 @@ public class MainGameController {
     private void SaveExitClicked() {
         // Load the FXML file of the new scene
         try {
+            SaveExitController ExitController = new SaveExitController();
+
+            ExitController.setMoves(thegame.getMovesList());
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("SaveExit.fxml"));
+            loader.setController(ExitController);
             Parent root = loader.load();
 
             // Create a new Scene with the loaded FXML content

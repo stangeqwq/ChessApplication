@@ -10,7 +10,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Load the FXML file
-        Parent root = FXMLLoader.load(getClass().getResource("StartChess.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
 
         // Create a Scene with the loaded FXML content
         Scene scene = new Scene(root);
