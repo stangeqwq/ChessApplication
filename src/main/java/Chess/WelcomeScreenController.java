@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class WelcomeScreen {
+public class WelcomeScreenController {
     @FXML
     private Button New;
     @FXML

@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 
-public class LoadScreen {
+public class LoadScreenController {
     @FXML
     private Accordion accordion;
 
@@ -29,7 +29,7 @@ public class LoadScreen {
 
             for (int i = 2; i < numberOfTitledPanes + 2; i++) { // first row is header, we start at second row
                 FXMLLoader titledPaneLoader = new FXMLLoader(getClass().getResource("GamePreview.fxml"));
-                GamePreview previewGame = new GamePreview(i);
+                GamePreviewController previewGame = new GamePreviewController(i);
                 titledPaneLoader.setController(previewGame); // use the controller that displays each row game saved in
                                                              // database
                 TitledPane titledPane = titledPaneLoader.load();

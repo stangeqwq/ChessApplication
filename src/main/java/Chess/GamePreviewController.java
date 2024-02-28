@@ -11,12 +11,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 
-public class GamePreview {
+public class GamePreviewController {
     private int id = 1;
     @FXML
     private TextArea previewBoard;
@@ -32,7 +31,7 @@ public class GamePreview {
     private String whitePlayer;
     private String blackPlayer;
 
-    public GamePreview(int id) {
+    public GamePreviewController(int id) {
         this.id = id;
     }
 
