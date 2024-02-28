@@ -43,6 +43,22 @@ public class WelcomeScreen {
     @FXML
     private void LoadGame() {
         // fetch from database and then load the state by setting each move
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoadScreen.fxml"));
+            Parent root = loader.load();
+
+            // Create a new Scene with the loaded FXML content
+            Scene newScene = new Scene(root);
+
+            // Get the current stage (window)
+            Stage stage = (Stage) New.getScene().getWindow();
+
+            // Switch to the new scene
+            stage.setScene(newScene);
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
     }
 
     @FXML
