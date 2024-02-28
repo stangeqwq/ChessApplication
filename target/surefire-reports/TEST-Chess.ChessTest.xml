@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="PH"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/21.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/surefire/surefirebooter-20240228132854955_3.jar /Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/surefire 2024-02-28T13-28-54_907-jvmRun1 surefire-20240228132854955_1tmp surefire_0-20240228132854955_2tmp"/>
+    <property name="sun.java.command" value="/Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/surefire/surefirebooter-20240228231129607_3.jar /Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/surefire 2024-02-28T23-11-29_557-jvmRun1 surefire-20240228231129607_1tmp surefire_0-20240228231129607_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/test-classes:/Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/classes:/Users/stange/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.8.0/junit-jupiter-api-5.8.0.jar:/Users/stange/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/Users/stange/.m2/repository/org/junit/platform/junit-platform-commons/1.8.0/junit-platform-commons-1.8.0.jar:/Users/stange/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/stange/.m2/repository/org/openjfx/javafx-controls/17/javafx-controls-17.jar:/Users/stange/.m2/repository/org/openjfx/javafx-controls/17/javafx-controls-17-mac-aarch64.jar:/Users/stange/.m2/repository/org/openjfx/javafx-graphics/17/javafx-graphics-17.jar:/Users/stange/.m2/repository/org/openjfx/javafx-graphics/17/javafx-graphics-17-mac-aarch64.jar:/Users/stange/.m2/repository/org/openjfx/javafx-base/17/javafx-base-17.jar:/Users/stange/.m2/repository/org/openjfx/javafx-base/17/javafx-base-17-mac-aarch64.jar:/Users/stange/.m2/repository/org/openjfx/javafx-fxml/17/javafx-fxml-17.jar:/Users/stange/.m2/repository/org/openjfx/javafx-fxml/17/javafx-fxml-17-mac-aarch64.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/surefire/surefirebooter-20240228132854955_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/stange/Desktop/NTNU/VÅR2024/TDT4100/Prosjekt/ChessApplication/target/surefire/surefirebooter-20240228231129607_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21.0.1"/>
