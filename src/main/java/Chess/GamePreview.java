@@ -63,7 +63,12 @@ public class GamePreview {
                                                                            // the dot
 
             for (String move : moves) {
-                thegame.move(move);
+                if (move.endsWith("+") || move.endsWith("#")) {
+                    thegame.move(move.substring(0, move.length() - 1));
+                } else {
+                    thegame.move(move);
+                }
+
             }
             gamePreview.setText("#" + (id - 2) + " " + whitePlayer + " vs. " + blackPlayer); // actualid = id-2 since
                                                                                              // when loading

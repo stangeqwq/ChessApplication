@@ -488,5 +488,21 @@ public class ChessGame {
         System.out.println(game8.getBoard());
         game8.move("0-0-0");
         System.out.println(game8.getBoard());
+
+        ChessGame game9 = new ChessGame("Troy", "Robert");
+        System.out.println(game9.getBoard());
+        game9.move("e4");
+        System.out.println(game9.getBoard());
+        game9.move("e5");
+        System.out.println(game9.getBoard());
+        game9.move("Nf3");
+        System.out.println(game9.getBoard());
+        game9.move("Nf6");
+        game9.move("Bc4");
+        System.out.println(game9.getBoard());
+        game9.move("Bc5");
+        System.out.println(game9.getBoard());
+        game9.move("O-O");
+        System.out.println(game9.getBoard());
     }
 }

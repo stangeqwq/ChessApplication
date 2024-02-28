@@ -2,6 +2,7 @@ package Chess;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -69,6 +70,7 @@ public class SaveExitController {
             int lineToModify = id; // Example: Modify the 3rd line
             String DELIMETER = ",";
             String moveString = "";
+            String temp_write = "temp_database.csv";
             for (String move : moveList) {
                 moveString += move + "."; // separate moves with "." later to be decomposed in load game
             }
@@ -80,7 +82,7 @@ public class SaveExitController {
                                                                                                                  // line
 
             try (BufferedReader reader = new BufferedReader(new FileReader(database));
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(database))) {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(temp_write))) {
 
                 String line;
                 int currentLine = 0;
@@ -98,6 +100,14 @@ public class SaveExitController {
             } catch (IOException e) {
                 e.printStackTrace();
                 // Handle the exception
+            }
+            // Rename the temporary file to the original file
+            File tempFile = new File(temp_write);
+            File databaseFile = new File(database);
+            if (tempFile.renameTo(databaseFile)) {
+                System.out.println("Database modified successfully.");
+            } else {
+                System.err.println("Failed to rename temporary file.");
             }
         }
 
