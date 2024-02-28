@@ -21,14 +21,6 @@ public class StartChessController {
     @FXML
     private Button startGameInput;
 
-    public String getPlayer1() {
-        return this.player1Name;
-    }
-
-    public String getPlayer2() {
-        return this.player2Name;
-    }
-
     @FXML
     private void handleButtonClick() {
         try {
@@ -40,6 +32,9 @@ public class StartChessController {
             // Load the FXML file of the new scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainGame.fxml"));
             Parent root = loader.load();
+            MainGameController mainController = loader.getController();
+            mainController.setPlayer1(player1Name);
+            mainController.setPlayer2(player2Name);
 
             // Create a new Scene with the loaded FXML content
             Scene newScene = new Scene(root);

@@ -26,8 +26,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        StartChessController startChessController = new StartChessController();
-        MainGameController mainGameController = new MainGameController();
 
         launch(args);
     }
