@@ -5,13 +5,13 @@ It uses a text input that takes in a move, in chess notation, and displays the b
 
 ## Main Interface
 Below is how the application looks like when actually trying to make moves.
-![MainGame.jpg](MainGame.jpg)
+![MainGame.png](MainGame.png)
 
 ## Home Screen
 The first interface the user is met with.
-![HomeScreen.jpg](Homescreen.jpg)
+![HomeScreen.png](Homescreen.png)
 
 ## Loaded Games
 Below shows how the user is able to access games that have been saved.
-![Loadedgames.jpg](Loadedgames.jpg)
+![LoadedGames.png](LoadedGames.png)
 
