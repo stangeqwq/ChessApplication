@@ -40,7 +40,7 @@ public class SaveExitController {
     private void YesClicked() {
         // load back to welcome screen writing to database
         // WRITE TO DATABASE
-        String database = "SavedGamesDatabase.csv";
+        String database = "./SavedGamesDatabase.csv";
         String moveString = "";
         int id = countLines(database);
         String DELIMETER = ",";
