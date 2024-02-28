@@ -9,6 +9,16 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.8.0</version> <!-- Adjust version as needed -->
             <scope>test</scope>
-        </dependency>        
+        </dependency>  
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17</version> <!-- Use the version appropriate for your project -->
+        </dependency> 
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17</version> <!-- Adjust version as needed -->
+        </dependency>
     </dependencies>
 </project>
