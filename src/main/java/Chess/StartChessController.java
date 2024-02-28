@@ -24,17 +24,20 @@ public class StartChessController {
     @FXML
     private void handleButtonClick() {
         try {
+            MainGameController mainController = new MainGameController();
 
             // Get the text entered in the text fields
             player1Name = inputPlayer1.getText();
             player2Name = inputPlayer2.getText();
+            // Set player names before loading
+            mainController.setPlayer1(player1Name);
+            mainController.setPlayer2(player2Name);
 
             // Load the FXML file of the new scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MainGame.fxml"));
+            loader.setController(mainController); // use the controller which have set the names with the inputs on this
+                                                  // scene
             Parent root = loader.load();
-            MainGameController mainController = loader.getController();
-            mainController.setPlayer1(player1Name);
-            mainController.setPlayer2(player2Name);
 
             // Create a new Scene with the loaded FXML content
             Scene newScene = new Scene(root);

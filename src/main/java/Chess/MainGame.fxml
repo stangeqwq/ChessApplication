@@ -6,14 +6,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Chess.MainGameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField fx:id="inputMove" layoutX="65.0" layoutY="545.0" prefHeight="49.0" prefWidth="208.0" promptText="Move:" /> 
+      <TextField fx:id="inputMove" layoutX="35.0" layoutY="547.0" prefHeight="49.0" prefWidth="208.0" promptText="Move:" /> 
       <TextArea fx:id="Board" layoutX="37.0" layoutY="60.0" prefHeight="439.0" prefWidth="619.0" style="-fx-font-family: monospace;">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></TextArea>
-      <Button fx:id="OkButton" layoutX="292.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleInputMove" prefHeight="49.0" prefWidth="64.0" text="Ok" />
+      <Button fx:id="OkButton" layoutX="277.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleInputMove" prefHeight="49.0" prefWidth="64.0" text="Ok" />
       <TextArea fx:id="MoveList" layoutX="733.0" layoutY="61.0" prefHeight="427.0" prefWidth="232.0" />
+      <Button fx:id="SaveExit" layoutX="37.0" layoutY="15.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="Save/Exit" />
    </children>
 </Pane>
