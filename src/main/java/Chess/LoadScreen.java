@@ -19,7 +19,10 @@ public class LoadScreen {
 
         try {
             FXMLLoader titledPaneLoader = new FXMLLoader(getClass().getResource("GamePreview.fxml"));
-            for (int i = 0; i < numberOfTitledPanes; i++) {
+            for (int i = 1; i < numberOfTitledPanes; i++) {
+                GamePreview previewGame = new GamePreview(i);
+                titledPaneLoader.setController(previewGame); // use the controller that displays each row game saved in
+                                                             // database
                 TitledPane titledPane = titledPaneLoader.load();
                 accordion.getPanes().add(titledPane);
             }
