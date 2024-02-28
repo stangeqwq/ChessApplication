@@ -69,6 +69,8 @@ public class MainGameController {
             SaveExitController ExitController = new SaveExitController();
 
             ExitController.setMoves(thegame.getMovesList());
+            ExitController.setWhitePlayer(player1);
+            ExitController.setBlackPlayer(player2);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("SaveExit.fxml"));
             loader.setController(ExitController);
