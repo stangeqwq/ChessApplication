@@ -30,7 +30,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Main-Class>Chess.App</Main-Class>
+                            <Main-Class>App</Main-Class>
                         </manifestEntries>
                     </archive>
                 </configuration>
