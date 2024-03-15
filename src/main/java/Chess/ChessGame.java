@@ -20,6 +20,10 @@ public class ChessGame {
         return this.moves;
     }
 
+    public boolean isOver() {
+        return finished;
+    }
+
     public void move(String move) {
         if (!finished) {
             if (whiteTurn) {
@@ -504,5 +508,9 @@ public class ChessGame {
         System.out.println(game9.getBoard());
         game9.move("O-O");
         System.out.println(game9.getBoard());
+
+        ChessGame game10 = new ChessGame("test2", "test3");
+        System.out.println(game10.getWhitePlayer().getPiecePositions());
+        System.out.println(game10.getBlackPlayer().getPiecePositions());
     }
 }

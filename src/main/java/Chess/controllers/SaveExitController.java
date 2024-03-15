@@ -25,6 +25,10 @@ public class SaveExitController {
     @FXML
     private Button NoButton;
 
+    public SaveExitController() {
+        // Constructor logic here (if needed)
+    }
+
     public void setMoves(List<String> movesList) {
         this.moveList = movesList;
     }
@@ -42,7 +46,7 @@ public class SaveExitController {
     }
 
     @FXML
-    private void YesClicked() {
+    public void YesClicked() {
         // load back to welcome screen writing to database
         // WRITE TO DATABASE
         if (id < 0) { // new game not a loaded game with an id
